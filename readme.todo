@@ -1,17 +1,20 @@
 Todos:
   New:
-    ☐ Night mode
-    ☐ Log in page
-    ☐ Home page
-
-
-
-
-
-
-
-
-
+    Back end for sign up/log in:  
+      ☐ Log in route
+      ☐ Data modeling
+      ☐ Media query for mobile size screen
+      Sequelize database:
+        ☐ Json web token for auth
+    New features:
+      ☐ Night mode
+      ☐ Log in page
+      ☐ Home page
+Done:
+  Install libraries:
+    ✔ DotEnv, Cors @done(21-05-08 23:23)
+  Routes:
+    ✔ Sign up route @done(21-05-08 23:24)
 
 
 

@@ -1,22 +1,57 @@
-// import React, { useState } from 'react';
+import React from 'react';
 import '../stylesheets/SignUp.css';
+import axios, { AxiosResponse } from 'axios';
 
 export default function SignUp() {
+  const username: HTMLInputElement = (document.querySelector("#username") as HTMLInputElement);
+  const password: HTMLInputElement = (document.querySelector("#password") as HTMLInputElement);
+  const confirmPassword: HTMLInputElement = (document.querySelector("#confirm-password") as HTMLInputElement);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    
+    if (!username.value || !password.value || !confirmPassword.value) return;
+    if (password.value != confirmPassword.value) {
+      // TODO: create red rectangle on password inputs if passwords do not match
+      // TODO: add alert element above form for error and success messages
+      return;
+    }
+    try {
+      const res: AxiosResponse = await axios.post('/api/signup', {
+        "username": username.value, 
+        "password": password.value
+      });
+      console.log(res.data);
+    } catch (err) {
+      const errorMessage = err.response.data;
+      console.log(errorMessage);
+      if (errorMessage) {
+        clearForm();
+      }
+    }
+  }
+
+  function clearForm() {
+    username.value = "";
+    password.value = "";
+    confirmPassword.value = "";
+  }
+
   return (
-    <form className='sign-up-form'>
+    <form className='sign-up-form' onSubmit={handleSubmit}>
       <div className='input-wrapper'>
         <label htmlFor='username'>Username</label>
-        <input type='text' id='username' />
+        <input type='text' id='username' name='username' required />
       </div>
       <div className='input-wrapper'>
         <label htmlFor='password'>Password</label>
-        <input type='password' id='password' />
+        <input type='password' id='password' name='password' required />
       </div>
       <div className='input-wrapper'>
         <label htmlFor='confirm-password'>Confirm Password</label>
-        <input type='password' id='confirm-password' />
+        <input type='password' id='confirm-password' name='confirm-password' required />
       </div>
-      <button className='sign-up-btn' >Sign up</button>
+      <button className='sign-up-btn' type='submit'>Sign up</button>
     </form>
   );
 }
