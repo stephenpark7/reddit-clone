@@ -1,9 +1,9 @@
 // import React, { useState } from 'react';
-import './Register.css';
+import '../stylesheets/SignUp.css';
 
-export default function Signup() {
+export default function SignUp() {
   return (
-    <form className='register-form'>
+    <form className='sign-up-form'>
       <div className='input-wrapper'>
         <label htmlFor='username'>Username</label>
         <input type='text' id='username' />
@@ -16,7 +16,7 @@ export default function Signup() {
         <label htmlFor='confirm-password'>Confirm Password</label>
         <input type='password' id='confirm-password' />
       </div>
-      <button className='sign-up-btn'>Sign up</button>
+      <button className='sign-up-btn' >Sign up</button>
     </form>
   );
 }
