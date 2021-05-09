@@ -3,13 +3,9 @@ import '../stylesheets/SignUp.css';
 import axios, { AxiosResponse } from 'axios';
 
 export default function SignUp() {
-  const username: HTMLInputElement = (document.querySelector("#username") as HTMLInputElement);
-  const password: HTMLInputElement = (document.querySelector("#password") as HTMLInputElement);
-  const confirmPassword: HTMLInputElement = (document.querySelector("#confirm-password") as HTMLInputElement);
-
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent): Promise<void> {
     e.preventDefault();
-    
+    const { username, password, confirmPassword } = getFormElements();
     if (!username.value || !password.value || !confirmPassword.value) return;
     if (password.value != confirmPassword.value) {
       // TODO: create red rectangle on password inputs if passwords do not match
@@ -27,14 +23,24 @@ export default function SignUp() {
       console.log(errorMessage);
       if (errorMessage) {
         clearForm();
+      } else {
+        console.log(err);
       }
     }
   }
 
-  function clearForm() {
+  function clearForm(): void {
+    const { username, password, confirmPassword } = getFormElements();
     username.value = "";
     password.value = "";
     confirmPassword.value = "";
+  }
+
+  function getFormElements(): { username: HTMLInputElement, password: HTMLInputElement, confirmPassword: HTMLInputElement } {
+    const username: HTMLInputElement = (document.querySelector("#username") as HTMLInputElement);
+    const password: HTMLInputElement = (document.querySelector("#password") as HTMLInputElement);
+    const confirmPassword: HTMLInputElement = (document.querySelector("#confirm-password") as HTMLInputElement);
+    return { username, password, confirmPassword };
   }
 
   return (
