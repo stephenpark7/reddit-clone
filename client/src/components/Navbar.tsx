@@ -1,13 +1,39 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../UserContext';
 
 import '../stylesheets/Navbar.css';
 
 export default function Navbar() {
+  const userContext = useContext(UserContext);
+  const { userData, setUserData } = userContext;
+
+  console.log(userData);
+
+  function logOut() {
+    if (!userData) return;
+    localStorage.removeItem('token');
+    setUserData({
+      "user_id": "",
+      "username": "",
+      "access_token": "",
+    });
+  }
+
   return (
     <div className='navbar'>
       <NavLink className='homepage' to='/' exact>untitled</NavLink>
-      <NavLink className='nav-link sign-up' to='/signup' exact>sign up</NavLink>
-      <NavLink className='nav-link log-in' to='/login' exact>log in</NavLink>
+      {userData.username ?
+        <>
+          <NavLink className='nav-link sign-up' to={'/u/' + userData.username} exact>{userData.username}</NavLink>
+          <Link className='nav-link sign-up' to={'/'} onClick={logOut}>Log out</Link>
+        </>
+        :
+        <>
+          <NavLink className='nav-link sign-up' to='/signup' exact>sign up</NavLink>
+          <NavLink className='nav-link log-in' to='/login' exact>log in</NavLink>
+        </>
+      }
     </div>
   );
 }

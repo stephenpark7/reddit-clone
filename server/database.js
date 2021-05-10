@@ -21,9 +21,9 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.User = require("./user.model")(sequelize, Sequelize);
-db.Post = require("./post.model")(sequelize, Sequelize);
-db.Category = require("./category.model")(sequelize, Sequelize);
+db.User = require("./model/user.model")(sequelize, Sequelize);
+db.Post = require("./model/post.model")(sequelize, Sequelize);
+db.Category = require("./model/category.model")(sequelize, Sequelize);
 db.User.hasMany(db.Post, { foreignKey: 'user_id' });
 db.Post.belongsTo(db.User, { foreignKey: 'user_id' });
 db.Category.hasMany(db.Post, { foreignKey: 'category_id' });

@@ -1,4 +1,4 @@
-.sign-up-form {
+.sign-up-form, .log-in-form {
   margin: 20px auto 0px auto;
   max-width: 300px;
   padding: 1.5em;
@@ -30,7 +30,7 @@ input:focus {
   border: 1px solid rgb(85, 85, 85);
 }
 
-.sign-up-btn {
+.sign-up-btn, .log-in-btn {
   border: 0;
   border-radius: 3px;
   padding: .6em 1.5em .6em 1.5em;
@@ -45,6 +45,6 @@ input:focus {
   transition: 0.3s;
 }
 
-.sign-up-btn:hover {
+.sign-up-btn:hover, .log-in-btn:hover {
   color: white;
 }

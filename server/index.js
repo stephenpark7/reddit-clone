@@ -7,7 +7,7 @@ const cors = require('cors');
 const app = express();
 
 // database set up
-const db = require('./models');
+const db = require('./database');
 db.sequelize.sync();
 
 // server port, production mode
