@@ -8,7 +8,7 @@ export default function Navbar() {
   const userContext = useContext(UserContext);
   const { userData, setUserData } = userContext;
 
-  console.log(userData);
+  // console.log(userData);
 
   function logOut() {
     if (!userData) return;
@@ -25,13 +25,13 @@ export default function Navbar() {
       <NavLink className='homepage' to='/' exact>untitled</NavLink>
       {userData.username ?
         <>
-          <NavLink className='nav-link sign-up' to={'/u/' + userData.username} exact>{userData.username}</NavLink>
-          <Link className='nav-link sign-up' to={'/'} onClick={logOut}>Log out</Link>
+          <NavLink className='nav-link' to={'/u/' + userData.username} exact>{userData.username}</NavLink>
+          <Link className='nav-link' to={'/'} onClick={logOut}>Log out</Link>
         </>
         :
         <>
-          <NavLink className='nav-link sign-up' to='/signup' exact>sign up</NavLink>
-          <NavLink className='nav-link log-in' to='/login' exact>log in</NavLink>
+          <NavLink className='nav-link' to='/signup' exact>sign up</NavLink>
+          <NavLink className='nav-link' to='/login' exact>log in</NavLink>
         </>
       }
     </div>

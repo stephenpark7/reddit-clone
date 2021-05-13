@@ -20,8 +20,8 @@ export default function SignUp() {
       console.log(res.data);
     } catch (err) {
       const errorMessage = err.response.data;
-      console.log(errorMessage);
       if (errorMessage) {
+        console.log(errorMessage);
         clearForm();
       } else {
         console.log(err);

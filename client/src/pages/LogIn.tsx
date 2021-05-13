@@ -23,8 +23,8 @@ export default function LogIn() {
       history.push('/');
     } catch (err) {
       const errorMessage = err.response.data;
-      console.log(errorMessage);
       if (errorMessage) {
+        console.log(errorMessage);
         clearForm();
       } else {
         console.log(err);

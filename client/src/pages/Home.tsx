@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { UserContext } from '../UserContext';
+import '../stylesheets/Home.css';
 
 export default function Home() {
   const userContext = useContext(UserContext);
@@ -8,8 +9,10 @@ export default function Home() {
   // console.log(userData);
 
   return (
-    <div>
-      {userData ? "Welcome " + userData.username : ""}
+    <div className='page-wrapper'>
+      {/* <h1>Homepage</h1> */}
+      {userData ? "Welcome " + userData.username
+      : ""}
     </div>
   );
 }

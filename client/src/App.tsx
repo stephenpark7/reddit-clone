@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Home from './pages/Home';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
+import Category from './pages/Category';
 import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
 import './stylesheets/App.css';
@@ -19,7 +20,6 @@ export default function App() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) setUserData(JSON.parse(token));
-    // TODO: retrieve post data
   }, []);
 
   return (
@@ -30,8 +30,8 @@ export default function App() {
           <Route exact path='/'><Home /></Route>
           <Route exact path='/signup'><SignUp /></Route>
           <Route exact path='/login'><LogIn /></Route>
-          <Route path='/404'><NotFound /></Route>
-          <Redirect from='*' to='/404' />
+          <Route exact path='/category/:id'><Category /></Route>
+          <Route path='*'><NotFound /></Route>
         </Switch>
       </Router>
     </UserContext.Provider>

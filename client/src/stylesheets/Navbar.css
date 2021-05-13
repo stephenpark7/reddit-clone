@@ -4,24 +4,45 @@
 }
 
 .navbar {
+  padding: 0 10vw;
   display: flex;
   background-color: rgb(38, 38, 38);
 }
 
 .homepage {
   align-self: center;
-  margin-left: 1em;
   font-size: 2em;
   margin-right: auto;
-  color: rgb(247, 247, 247);
+  color: rgb(225, 225, 225);
 }
 
-.sign-up, .log-in {
+.nav-link {
   align-self: center;
   padding: 1.25em 2em 1em 2em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  font-size: 1.2em;
-  border-bottom: 5px solid rgb(38, 38, 38);
+  font-weight: 600;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+  transition: color 0.1s ease 0s;
+}
+
+.nav-link:hover::after {
+  opacity: 1;
+}
+
+.nav-link::after {
+  transition: 0.2s ease-in;
+  content: "";
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  opacity: 0;
+  border-bottom: 1px solid rgb(128, 128, 128);
 }
 
 a {
@@ -34,7 +55,8 @@ a {
   color: white;
 }
 
-.nav-link.active {
+.nav-link.active::after {
   background-color: rgb(46, 46, 46);
-  border-bottom: 5px solid rgb(68, 68, 68);
+  opacity: 1;
+  border-bottom: 3px solid rgb(128, 128, 128);
 }

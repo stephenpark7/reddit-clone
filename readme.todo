@@ -1,21 +1,22 @@
 Todos:
   New:
     Back end for sign up/log in:  
-      ☐ Data modeling
+      ☐ HTML and CSS for posts
       ☐ Media query for mobile size screen
-      ☐ Log out
       Log in route:
         ✔ Add context @done(21-05-09 12:39)
         ✔ Add useState for account state (logged in?, username, userid) @done(21-05-09 12:39)
       Sequelize database:
-        ☐ Json web token for auth
+        ✔ Json web token for auth @done(21-05-10 18:55)
     New features:
       ☐ Night mode
-      ☐ Log in page
       ☐ Home page
   Side Features:
     ☐ Destroy jwt tokens on logout using jwt-redis (blacklisting)
 Done:
+  New features:
+    ✔ Log in page @done(21-05-10 18:55)
+    ✔ Log out @done(21-05-10 18:54)
   Install libraries:
     ✔ DotEnv, Cors @done(21-05-08 23:23)
   Routes:
