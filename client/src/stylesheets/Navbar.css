@@ -1,12 +1,13 @@
 * {
   box-sizing: border-box;
-  margin: 0;
 }
 
 .navbar {
   padding: 0 10vw;
   display: flex;
-  background-color: rgb(38, 38, 38);
+  background-color: rgb(32, 32, 32);
+  box-shadow: 0px 0px 6px 4px rgb(16, 16, 16);
+  height: 48px;
 }
 
 .homepage {
@@ -19,6 +20,7 @@
 .nav-link {
   align-self: center;
   padding: 1.25em 2em 1em 2em;
+  height: 100%;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   font-weight: 600;
