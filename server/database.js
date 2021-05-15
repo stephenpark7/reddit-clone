@@ -23,11 +23,20 @@ db.sequelize = sequelize;
 
 db.User = require("./model/user.model")(sequelize, Sequelize);
 db.Post = require("./model/post.model")(sequelize, Sequelize);
+db.PostComment = require("./model/post-comment.model")(sequelize, Sequelize);
 db.Category = require("./model/category.model")(sequelize, Sequelize);
+
 db.User.hasMany(db.Post, { foreignKey: 'user_id' });
 db.Post.belongsTo(db.User, { foreignKey: 'user_id' });
+
 db.Category.hasMany(db.Post, { foreignKey: 'category_id' });
 db.Post.belongsTo(db.Category, { foreignKey: 'category_id' });
+
+db.Post.hasMany(db.PostComment, { foreignKey: 'post_id' });
+db.PostComment.belongsTo(db.Post, { foreignKey: 'post_id' });
+
+db.User.hasMany(db.PostComment, { foreignKey: 'user_id' });
+db.PostComment.belongsTo(db.User, { foreignKey: 'user_id' });
 
 module.exports = db;
 

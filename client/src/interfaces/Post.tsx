@@ -1,6 +1,7 @@
 import { User } from './User';
+import { PostComment } from './PostComment';
 
-export interface Post {
+export interface PostInterface {
   post_id: string;
   user_id: number;
   category_id: number;
@@ -12,4 +13,5 @@ export interface Post {
   createdAt: string;
   updatedAt: string;
   User: User;
+  PostComments: Array<PostComment>;
 }

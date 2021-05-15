@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
 import Category from './pages/Category';
+import Post from './pages/Post';
 import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
 import './stylesheets/App.css';
@@ -30,7 +31,8 @@ export default function App() {
           <Route exact path='/'><Home /></Route>
           <Route exact path='/signup'><SignUp /></Route>
           <Route exact path='/login'><LogIn /></Route>
-          <Route exact path='/category/:id'><Category /></Route>
+          <Route exact path='/category/:categoryId'><Category /></Route>
+          <Route exact path='/category/:categoryId/:postId'><Post /></Route>
           <Route path='*'><NotFound /></Route>
         </Switch>
       </Router>

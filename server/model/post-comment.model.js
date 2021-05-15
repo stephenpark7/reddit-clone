@@ -1,11 +1,15 @@
 module.exports = (sequelize, Sequelize) => {
-  const PostComments = sequelize.define('PostComments', {
+  const PostComment = sequelize.define('PostComment', {
     comment_id: {
       type: Sequelize.INTEGER,
       unique: true,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
+    },
+    post_id: {
+      type: Sequelize.UUID,
+      allowNull: false,
     },
     user_id: {
       type: Sequelize.INTEGER,
@@ -19,5 +23,5 @@ module.exports = (sequelize, Sequelize) => {
     freezeTableName: true,
   });
   
-  return Category;
+  return PostComment;
 }

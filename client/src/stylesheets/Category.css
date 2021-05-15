@@ -45,11 +45,11 @@
   color: #EEE;
 }
 
-.post-content a, .post-title a:hover, .post-data a:hover {
+.post-content a, .post-title a:hover, .post-data a:hover, .post-comments a:hover, h1:hover {
   color: rgb(70, 184, 255);
 }
 
-.post-content a:hover {
+.post-content a:hover, .post-comments a:hover {
   text-decoration: underline;
 }
 

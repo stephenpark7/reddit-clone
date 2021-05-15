@@ -20,4 +20,12 @@ router.post('/category/:categoryName', auth, async (req, res) => {
   await categoryController.createPost(req, res);
 });
 
+router.post('/category/:categoryName/:postId/comments', auth, async (req, res) => {
+  await categoryController.createPostComment(req, res);
+});
+
+router.get('/category/:categoryName/:postId', async (req, res) => {
+  await categoryController.getPost(req, res);
+});
+
 module.exports = router;

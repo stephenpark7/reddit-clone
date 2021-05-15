@@ -1,7 +1,10 @@
-const { User } = require('../database');
+const { post } = require('../api');
+// const { User } = require('../database');
 const db = require('../database');
+const User = db.User;
 const Category = db.Category;
 const Post = db.Post;
+const PostComment = db.PostComment;
 
 // Get list of posts
 exports.getPosts = async (req, res) => {
@@ -21,13 +24,11 @@ exports.getPosts = async (req, res) => {
 
     const postData = await Post.findAll({
       attributes: ['post_id', 'type', 'title', 'content', 'upvotes', 'downvotes', 'createdAt'],
-      where: {
-        category_id: categoryData.category_id
-      },
-      include: [{
-        model: User,
-        attributes: ['username'],
-      }],
+      where: { category_id: categoryData.category_id },
+      include: [
+        { model: User, attributes: ['username'] }, 
+        { model: PostComment, attributes: ['comment_id'] }
+      ],
       order: [
         ['post_id', 'DESC']
       ],
@@ -41,11 +42,10 @@ exports.getPosts = async (req, res) => {
 
 // Create a post
 exports.createPost = async (req, res) => {
-  const { categoryName } = req.params;
-  if (!categoryName) return;
   try {
+    const { categoryName } = req.params;
     const { type, title, content, category_id } = req.query;
-    if (!type || !title || !content || !category_id) {
+    if (!categoryName || !type || !title || !content || !category_id) {
       res.status(200).send("Missing parameter(s).");
       return;
     }
@@ -60,4 +60,55 @@ exports.createPost = async (req, res) => {
   } catch(err) {
     res.status(400).send('Failed to create an post.');
   }
-} 
+}
+
+// Create a post comment
+exports.createPostComment = async (req, res) => {
+  try {
+    const { postId } = req.params;
+    const { content } = req.body;
+    if (!postId || !content) {
+      res.status(200).send("Missing parameter(s).");
+      return;
+    }
+    const postComment = await PostComment.create({
+      post_id: postId,
+      user_id: req.userId,
+      content: content
+    })
+    res.status(200).json(postComment);
+  } catch(err) {
+    res.status(400).send('Failed to create a post comment.');
+  }
+}
+
+// Get a post
+exports.getPost = async (req, res) => {
+  try {
+    const { postId } = req.params;
+    if (!postId) {
+      res.status(200).send("Missing parameter(s).");
+      return;
+    }
+    let post = await Post.findOne({
+      attributes: ['type', 'title', 'content', 'upvotes', 'downvotes', 'createdAt'],
+      where: { post_id: postId },
+      include: [
+        { model: User, attributes: ['username'] }, 
+      ],
+      raw: true,
+      nest: true,
+    });
+    const PostComments = await PostComment.findAll({
+      attributes: ['comment_id', 'content', 'createdAt'],
+      where: { post_id: postId },
+      include: [
+        { model: User, attributes: ['username'] }, 
+      ],
+    });
+    post.PostComments = PostComments;
+    res.status(200).json(post);
+  } catch(err) {
+    res.status(400).send('Failed to get a post.');
+  }
+}
