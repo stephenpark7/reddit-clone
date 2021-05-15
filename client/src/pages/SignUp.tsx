@@ -1,8 +1,11 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import '../stylesheets/SignUp.css';
 import axios, { AxiosResponse } from 'axios';
 
 export default function SignUp() {
+  const history = useHistory();
+
   async function handleSubmit(e: React.FormEvent): Promise<void> {
     e.preventDefault();
     const { username, password, confirmPassword } = getFormElements();
@@ -18,6 +21,7 @@ export default function SignUp() {
         "password": password.value
       });
       console.log(res.data);
+      history.push('/login');
     } catch (err) {
       const errorMessage = err.response.data;
       if (errorMessage) {

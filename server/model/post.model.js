@@ -1,11 +1,11 @@
 module.exports = (sequelize, Sequelize) => {
   const Post = sequelize.define('Post', {
     post_id: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.UUID,
       unique: true,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
+      defaultValue: Sequelize.UUIDV1,
     },
     user_id: {
       type: Sequelize.INTEGER,
@@ -15,18 +15,17 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
+    type: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
     title: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    description: {
+    content: {
       type: Sequelize.STRING,
       allowNull: false,
-    },
-    views: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      defaultValue: 0,
     },
     upvotes: {
       type: Sequelize.INTEGER,
