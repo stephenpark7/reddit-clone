@@ -1,5 +1,5 @@
 .post-wrapper {
-    background-color: rgb(32, 32, 32);
+    background-color: rgb(38, 38, 38);
     display: flex;
     margin-bottom: 1em;
 
@@ -17,7 +17,7 @@
             color: inherit;
             border: 0;
             padding: 0.4em;
-            transition: 0.3s;
+            transition: 0.2s;
         }
 
         .vote-arrow-up:hover,
@@ -29,11 +29,12 @@
         .vote-score {
             color: rgb(225, 225, 225);
             padding: 0.275em;
+            font-size: .8em;
+            font-weight: 400;
         }
     }
 
     .content-wrapper {
-        background-color: rgb(38, 38, 38);
         padding: 0.3em 0.6em;
         display: flex;
         flex-direction: column;

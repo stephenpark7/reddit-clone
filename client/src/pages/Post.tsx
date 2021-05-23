@@ -44,16 +44,18 @@ export default function Post() {
   useEffect(() => {
     getPostData();
   }, []);
-  
+
   const renderPostTitle = (post: PostInterface) => <>{post.title}</>;
   const renderPostContent = (post: PostInterface) => post.type === 'link' ? <a href={post.content}>{post.content}</a> : <>{post.content}</>;
   const renderPostData = (post: PostInterface) => <>Posted by <a href={'/user/' + post.User.username}>{post.User.username}</a> {timeDifference(new Date(), new Date(post.createdAt))}</>;
-  const renderPostComments = (post: PostInterface) => <><i className='far fa-comments'></i>{post.PostComments.length} {post.PostComments.length === 0 ? "comments" : "comment"}</>;
+  const renderPostComments = (post: PostInterface) => <><i className='far fa-comments'></i>{post.PostComments.length} {post.PostComments.length === 0 ? 'comments' : 'comment'}</>;
 
   return (
     <div className='page-wrapper'>
-      <h1 className='category-title'><a href={'/category/' + categoryId}>{categoryId}</a></h1>
-      {fetchFlag ? 
+      <h1 className='category-title'>
+        <a className='category-title-link' href={'/category/' + categoryId}>{categoryId}</a>
+      </h1>
+      {fetchFlag ?
         <>
           <div className='post-wrapper'>
             <div className='vote-wrapper'>
@@ -65,25 +67,36 @@ export default function Post() {
               <div className='post-title-full'>{renderPostTitle(postData)}</div>
               <div className='post-content-full'>{renderPostContent(postData)}</div>
               <div className='post-data'>
-                <span className="post-data-time-full">{renderPostData(postData)}</span>
+                <span className='post-data-time-full'>{renderPostData(postData)}</span>
                 {renderPostComments(postData)}
-                </div>
+              </div>
             </div>
           </div>
-          <div className="comments-wrapper">
-            {postData.PostComments.map((comment: PostCommentInterface, idx: number) => 
+          <div className='comments-wrapper'>
+            <form className='add-comment-form'>
+              <div className='add-comment-wrapper'>
+                  <div className='add-comment-textarea-label-wrapper'>
+                    <span className='add-comment-textarea-label'>Comment as <a href={'/user/' + userData.username}>{userData.username}</a></span>
+                  </div>
+                  <textarea name='add-comment-textarea' className='add-comment-textarea' placeholder='enter your comment' required></textarea>
+                  <div className="add-comment-button-wrapper">
+                    <button type='submit' className='add-comment-button'>Add Comment</button>
+                  </div>
+              </div>
+            </form>
+            {postData.PostComments.map((comment: PostCommentInterface, idx: number) =>
               <div className='post-comment-wrapper' key={idx}>
                 <div className='post-comment-author'>
                   <a href={'/user/' + comment.User.username}>{comment.User.username}</a>
-                  <span className='post-comment-time'>{timeDifference(new Date(), new Date(comment.createdAt))}</span>
+                  <span className='post-comment-time'>· {timeDifference(new Date(), new Date(comment.createdAt))}</span>
                 </div>
                 <hr />
-                <span>{comment.content}</span>
+                <span className='post-comment-text'>{comment.content}</span>
               </div>
             )}
-          </div> 
-        </> : 
-        "Loading..."
+          </div>
+        </> :
+        'Loading...'
       }
     </div>
   );

@@ -1,5 +1,5 @@
 .post-wrapper {
-  background-color: #202020;
+  background-color: #262626;
   display: flex;
   margin-bottom: 1em;
 }
@@ -17,7 +17,7 @@
   color: inherit;
   border: 0;
   padding: 0.4em;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 .post-wrapper .vote-wrapper .vote-arrow-up:hover,
 .post-wrapper .vote-wrapper .vote-arrow-down:hover {
@@ -27,9 +27,10 @@
 .post-wrapper .vote-wrapper .vote-score {
   color: #e1e1e1;
   padding: 0.275em;
+  font-size: 0.8em;
+  font-weight: 400;
 }
 .post-wrapper .content-wrapper {
-  background-color: #262626;
   padding: 0.3em 0.6em;
   display: flex;
   flex-direction: column;

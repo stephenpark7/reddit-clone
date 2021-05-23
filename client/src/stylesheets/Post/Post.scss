@@ -17,15 +17,42 @@
 }
 
 .comments-wrapper {
+    position: relative;
     background-color: rgb(38, 38, 38);
-    padding: 0.3em 0.6em;
+    padding: 0.4em 0.6em 0.45em 0.6em;
+
+    .add-comment-wrapper {
+        .add-comment-textarea-label-wrapper {
+            margin-bottom: .25em;
+            font-size: .8em;
+            .add-comment-textarea-label {
+                a {
+                    color: rgb(206, 206, 206);
+                }
+                a:hover {
+                    color: rgb(255, 255, 255);
+                }
+            } 
+        }
+        .add-comment-textarea {
+            display: block;
+            border: 1px solid rgb(48, 48, 48);
+            background-color: rgb(36, 36, 36);
+            color:rgb(221, 221, 221);
+            width: 100%;
+            margin-bottom: .5em;
+            padding: .5em;
+            resize: none;
+        }
+    }
 
     .post-comment-wrapper {
-        position: relative;
-    
         .post-comment-author {
             a {
                 color: rgb(225, 225, 225);
+                font-size: 1.05em;
+                font-weight: 600; 
+                margin-right: .25em;
             }
 
             a:hover {
@@ -33,8 +60,6 @@
             }
     
             .post-comment-time {
-                position: absolute;
-                right: 0;
                 font-size: 0.8em;
             }
         }
@@ -43,7 +68,37 @@
             color: rgba(70, 70, 70, 0.666);
             margin: 0.2em 0 0.5em 0;
         }
+
+        .post-comment-text {
+            color: rgb(206, 206, 206);
+        }
+    }
+
+    .add-comment-button-wrapper {
+        height: 32px;
+
+        .add-comment-button {
+            display: block;
+            background-color:rgb(49, 49, 49);
+            border: 0;
+            color: rgb(225, 225, 225);
+            font-family: inherit;
+            position: absolute;
+            right: 8px; 
+            padding: .75em 1em;
+            font-size: .8em;
+            transition: 0.2s;
+            border-radius: 12px;
+
+            &:hover {
+                background-color:rgb(60, 60, 60);
+                color: rgb(255, 255, 255);
+                cursor: pointer;
+            }
+        }
     }
 }
+
+
 
 

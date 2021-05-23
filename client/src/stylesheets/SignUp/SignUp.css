@@ -42,7 +42,7 @@ input:focus {
   text-transform: uppercase;
   cursor: pointer;
   width: 100%;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
 .sign-up-btn:hover, .log-in-btn:hover {
