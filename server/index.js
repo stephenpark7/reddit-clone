@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // api routing
-app.use('/api/', require('./api/'));
+app.use('/api/', require('./routes.js'));
 
 // serve production build
 if (PRODUCTION_MODE) {

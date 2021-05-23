@@ -16,14 +16,15 @@
     }
 }
 
-.comments-wrapper {
+.add-comment-form-wrapper, .comments-wrapper {
     position: relative;
     background-color: rgb(38, 38, 38);
     padding: 0.4em 0.6em 0.45em 0.6em;
+    margin-bottom: 1em;
 
     .add-comment-wrapper {
         .add-comment-textarea-label-wrapper {
-            margin-bottom: .25em;
+            margin-bottom: .5em;
             font-size: .8em;
             .add-comment-textarea-label {
                 a {
@@ -43,6 +44,8 @@
             margin-bottom: .5em;
             padding: .5em;
             resize: none;
+            font-family: inherit;
+            font-size: 1em;
         }
     }
 

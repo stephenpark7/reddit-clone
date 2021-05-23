@@ -8,8 +8,6 @@ export default function Navbar() {
   const userContext = useContext(UserContext);
   const { userData, setUserData } = userContext;
 
-  // console.log(userData);
-
   function logOut() {
     if (!userData) return;
     localStorage.removeItem('token');
@@ -22,7 +20,7 @@ export default function Navbar() {
 
   return (
     <div className='navbar'>
-      <NavLink className='homepage' to='/' exact>untitled</NavLink>
+      <NavLink className='nav-title' to='/' exact>asperitas</NavLink>
       {userData.username ?
         <>
           <NavLink className='nav-link' to={'/u/' + userData.username} exact>{userData.username}</NavLink>

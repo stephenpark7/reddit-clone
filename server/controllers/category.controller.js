@@ -1,4 +1,4 @@
-const { post } = require('../api');
+const { post } = require('../routes');
 // const { User } = require('../database');
 const db = require('../database');
 const User = db.User;

@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controller/user.controller');
-const categoryController = require('../controller/category.controller');
-const auth = require('../middleware/auth');
+const userController = require('./controllers/user.controller');
+const categoryController = require('./controllers/category.controller');
+const auth = require('./middleware/auth');
 
 router.post('/signup', async (req, res) => {
   await userController.create(req, res);

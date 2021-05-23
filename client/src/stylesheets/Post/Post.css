@@ -12,22 +12,23 @@
   margin-right: 0.5em;
 }
 
-.comments-wrapper {
+.add-comment-form-wrapper, .comments-wrapper {
   position: relative;
   background-color: #262626;
   padding: 0.4em 0.6em 0.45em 0.6em;
+  margin-bottom: 1em;
 }
-.comments-wrapper .add-comment-wrapper .add-comment-textarea-label-wrapper {
-  margin-bottom: 0.25em;
+.add-comment-form-wrapper .add-comment-wrapper .add-comment-textarea-label-wrapper, .comments-wrapper .add-comment-wrapper .add-comment-textarea-label-wrapper {
+  margin-bottom: 0.5em;
   font-size: 0.8em;
 }
-.comments-wrapper .add-comment-wrapper .add-comment-textarea-label-wrapper .add-comment-textarea-label a {
+.add-comment-form-wrapper .add-comment-wrapper .add-comment-textarea-label-wrapper .add-comment-textarea-label a, .comments-wrapper .add-comment-wrapper .add-comment-textarea-label-wrapper .add-comment-textarea-label a {
   color: #cecece;
 }
-.comments-wrapper .add-comment-wrapper .add-comment-textarea-label-wrapper .add-comment-textarea-label a:hover {
+.add-comment-form-wrapper .add-comment-wrapper .add-comment-textarea-label-wrapper .add-comment-textarea-label a:hover, .comments-wrapper .add-comment-wrapper .add-comment-textarea-label-wrapper .add-comment-textarea-label a:hover {
   color: white;
 }
-.comments-wrapper .add-comment-wrapper .add-comment-textarea {
+.add-comment-form-wrapper .add-comment-wrapper .add-comment-textarea, .comments-wrapper .add-comment-wrapper .add-comment-textarea {
   display: block;
   border: 1px solid #303030;
   background-color: #242424;
@@ -36,30 +37,32 @@
   margin-bottom: 0.5em;
   padding: 0.5em;
   resize: none;
+  font-family: inherit;
+  font-size: 1em;
 }
-.comments-wrapper .post-comment-wrapper .post-comment-author a {
+.add-comment-form-wrapper .post-comment-wrapper .post-comment-author a, .comments-wrapper .post-comment-wrapper .post-comment-author a {
   color: #e1e1e1;
   font-size: 1.05em;
   font-weight: 600;
   margin-right: 0.25em;
 }
-.comments-wrapper .post-comment-wrapper .post-comment-author a:hover {
+.add-comment-form-wrapper .post-comment-wrapper .post-comment-author a:hover, .comments-wrapper .post-comment-wrapper .post-comment-author a:hover {
   color: white;
 }
-.comments-wrapper .post-comment-wrapper .post-comment-author .post-comment-time {
+.add-comment-form-wrapper .post-comment-wrapper .post-comment-author .post-comment-time, .comments-wrapper .post-comment-wrapper .post-comment-author .post-comment-time {
   font-size: 0.8em;
 }
-.comments-wrapper .post-comment-wrapper hr {
+.add-comment-form-wrapper .post-comment-wrapper hr, .comments-wrapper .post-comment-wrapper hr {
   color: rgba(70, 70, 70, 0.666);
   margin: 0.2em 0 0.5em 0;
 }
-.comments-wrapper .post-comment-wrapper .post-comment-text {
+.add-comment-form-wrapper .post-comment-wrapper .post-comment-text, .comments-wrapper .post-comment-wrapper .post-comment-text {
   color: #cecece;
 }
-.comments-wrapper .add-comment-button-wrapper {
+.add-comment-form-wrapper .add-comment-button-wrapper, .comments-wrapper .add-comment-button-wrapper {
   height: 32px;
 }
-.comments-wrapper .add-comment-button-wrapper .add-comment-button {
+.add-comment-form-wrapper .add-comment-button-wrapper .add-comment-button, .comments-wrapper .add-comment-button-wrapper .add-comment-button {
   display: block;
   background-color: #313131;
   border: 0;
@@ -72,7 +75,7 @@
   transition: 0.2s;
   border-radius: 12px;
 }
-.comments-wrapper .add-comment-button-wrapper .add-comment-button:hover {
+.add-comment-form-wrapper .add-comment-button-wrapper .add-comment-button:hover, .comments-wrapper .add-comment-button-wrapper .add-comment-button:hover {
   background-color: #3c3c3c;
   color: white;
   cursor: pointer;

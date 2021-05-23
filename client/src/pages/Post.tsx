@@ -72,18 +72,20 @@ export default function Post() {
               </div>
             </div>
           </div>
-          <div className='comments-wrapper'>
+          <div className='add-comment-form-wrapper'>
             <form className='add-comment-form'>
               <div className='add-comment-wrapper'>
-                  <div className='add-comment-textarea-label-wrapper'>
-                    <span className='add-comment-textarea-label'>Comment as <a href={'/user/' + userData.username}>{userData.username}</a></span>
-                  </div>
-                  <textarea name='add-comment-textarea' className='add-comment-textarea' placeholder='enter your comment' required></textarea>
-                  <div className="add-comment-button-wrapper">
-                    <button type='submit' className='add-comment-button'>Add Comment</button>
-                  </div>
+                <div className='add-comment-textarea-label-wrapper'>
+                  <span className='add-comment-textarea-label'>Comment as <a href={'/user/' + userData.username}>{userData.username}</a></span>
+                </div>
+                <textarea name='add-comment-textarea' className='add-comment-textarea' placeholder='enter your comment' required></textarea>
+                <div className="add-comment-button-wrapper">
+                  <button type='submit' className='add-comment-button'>Add Comment</button>
+                </div>
               </div>
             </form>
+          </div>
+          <div className='comments-wrapper'>
             {postData.PostComments.map((comment: PostCommentInterface, idx: number) =>
               <div className='post-comment-wrapper' key={idx}>
                 <div className='post-comment-author'>

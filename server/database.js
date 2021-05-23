@@ -21,10 +21,10 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.User = require("./model/user.model")(sequelize, Sequelize);
-db.Post = require("./model/post.model")(sequelize, Sequelize);
-db.PostComment = require("./model/post-comment.model")(sequelize, Sequelize);
-db.Category = require("./model/category.model")(sequelize, Sequelize);
+db.User = require("./models/user.model")(sequelize, Sequelize);
+db.Post = require("./models/post.model")(sequelize, Sequelize);
+db.PostComment = require("./models/post-comment.model")(sequelize, Sequelize);
+db.Category = require("./models/category.model")(sequelize, Sequelize);
 
 db.User.hasMany(db.Post, { foreignKey: 'user_id' });
 db.Post.belongsTo(db.User, { foreignKey: 'user_id' });
