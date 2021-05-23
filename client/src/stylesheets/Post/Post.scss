@@ -16,7 +16,7 @@
     }
 }
 
-.add-comment-form-wrapper, .post-comment-wrapper {
+.add-comment-form-wrapper {
     position: relative;
     background-color: rgb(38, 38, 38);
     padding: 0.4em 0.6em 0.45em 0.6em;
@@ -49,35 +49,6 @@
         }
     }
 
-    .post-comment-wrapper {
-        margin-bottom: 2.5em;
-        .post-comment-author {
-            a {
-                color: rgb(225, 225, 225);
-                font-size: 1.05em;
-                font-weight: 600; 
-                margin-right: .25em;
-            }
-
-            a:hover {
-                color: rgb(255, 255, 255);
-            }
-    
-            .post-comment-time {
-                font-size: 0.8em;
-            }
-        }
-    
-        hr {
-            color: rgba(70, 70, 70, 0.666);
-            margin: 0.2em 0 0.5em 0;
-        }
-
-        .post-comment-text {
-            color: rgb(206, 206, 206);
-        }
-    }
-
     .add-comment-button-wrapper {
         height: 32px;
 
@@ -103,6 +74,36 @@
     }
 }
 
-
-
-
+.comments-wrapper {
+    .post-comment-wrapper {
+        background-color: rgb(38, 38, 38);
+        padding: 0.4em 0.6em 0.45em 0.6em;
+        margin-bottom: 1em;
+    
+        .post-comment-author {
+            a {
+                color: rgb(225, 225, 225);
+                font-size: 1.05em;
+                font-weight: 600; 
+                margin-right: .25em;
+            }
+    
+            a:hover {
+                color: rgb(255, 255, 255);
+            }
+    
+            .post-comment-time {
+                font-size: 0.8em;
+            }
+        }
+    
+        hr {
+            color: rgba(70, 70, 70, 0.666);
+            margin: 0.2em 0 0.5em 0;
+        }
+    
+        .post-comment-text {
+            color: rgb(206, 206, 206);
+        }
+    }
+}
