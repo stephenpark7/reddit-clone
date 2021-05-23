@@ -1,0 +1,71 @@
+.post-wrapper {
+  background-color: #202020;
+  display: flex;
+  margin-bottom: 1em;
+}
+.post-wrapper .vote-wrapper {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40px;
+}
+.post-wrapper .vote-wrapper .vote-arrow-up,
+.post-wrapper .vote-wrapper .vote-arrow-down {
+  font-size: 1.2em;
+  background-color: inherit;
+  color: inherit;
+  border: 0;
+  padding: 0.4em;
+  transition: 0.3s;
+}
+.post-wrapper .vote-wrapper .vote-arrow-up:hover,
+.post-wrapper .vote-wrapper .vote-arrow-down:hover {
+  cursor: pointer;
+  background-color: #333333;
+}
+.post-wrapper .vote-wrapper .vote-score {
+  color: #e1e1e1;
+  padding: 0.275em;
+}
+.post-wrapper .content-wrapper {
+  background-color: #262626;
+  padding: 0.3em 0.6em;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.post-wrapper .content-wrapper .post-title {
+  font-weight: 500;
+  font-size: 1.4em;
+  color: inherit;
+}
+.post-wrapper .content-wrapper .post-content,
+.post-wrapper .content-wrapper .post-data a,
+.post-wrapper .content-wrapper .post-comments {
+  color: #e1e1e1;
+}
+.post-wrapper .content-wrapper .post-content {
+  margin-bottom: 0.25em;
+}
+.post-wrapper .content-wrapper .post-data {
+  margin-bottom: 0.125em;
+}
+.post-wrapper .content-wrapper .post-comments a {
+  font-size: 0.9em;
+}
+.post-wrapper .content-wrapper .post-title a:hover,
+.post-wrapper .content-wrapper .post-data a:hover,
+.post-wrapper .content-wrapper .post-comments a:hover {
+  color: white;
+}
+.post-wrapper .content-wrapper .post-data {
+  font-size: 0.8em;
+}
+.post-wrapper .content-wrapper .fa-comments {
+  color: #cecece;
+  margin-right: 0.3em;
+  font-size: 1.05em;
+}
+
+/*# sourceMappingURL=Category.css.map */

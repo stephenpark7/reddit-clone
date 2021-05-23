@@ -1,3 +1,7 @@
-export interface PostComment {
+export interface PostCommentInterface {
+  User: {
+    username: string
+  };
   content: string;
+  createdAt: string;
 }

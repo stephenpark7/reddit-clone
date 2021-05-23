@@ -2,9 +2,10 @@ import { useCallback, useContext, useEffect, useState } from 'react';
 import { UserContext } from '../UserContext';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
-import '../stylesheets/Home.css';
-import '../stylesheets/Category.css';
+import '../stylesheets/Category/Category.css';
+import '../stylesheets/Post/Post.css';
 import { PostInterface } from '../interfaces/Post';
+import { PostCommentInterface } from '../interfaces/PostComment';
 import { timeDifference } from '../js/functions';
 
 export default function Post() {
@@ -44,14 +45,14 @@ export default function Post() {
     getPostData();
   }, []);
   
-  const renderPostTitle = (post: PostInterface) => post.type === 'link' ? <a href={post.content}>{post.title}</a> : <a href={'/category/' + categoryId + '/' + post.post_id}>{post.title}</a>
+  const renderPostTitle = (post: PostInterface) => <>{post.title}</>;
   const renderPostContent = (post: PostInterface) => post.type === 'link' ? <a href={post.content}>{post.content}</a> : <>{post.content}</>;
   const renderPostData = (post: PostInterface) => <>Posted by <a href={'/user/' + post.User.username}>{post.User.username}</a> {timeDifference(new Date(), new Date(post.createdAt))}</>;
   const renderPostComments = (post: PostInterface) => <><i className='far fa-comments'></i>{post.PostComments.length} {post.PostComments.length === 0 ? "comments" : "comment"}</>;
 
   return (
     <div className='page-wrapper'>
-      <h1><a href={'/category/' + categoryId}>{categoryId}</a></h1>
+      <h1 className='category-title'><a href={'/category/' + categoryId}>{categoryId}</a></h1>
       {fetchFlag ? 
         <>
           <div className='post-wrapper'>
@@ -61,14 +62,25 @@ export default function Post() {
               <button className='vote-arrow-down'><i className='fas fa-arrow-down'></i></button>
             </div>
             <div className='content-wrapper'>
-              <div className='post-title'>{renderPostTitle(postData)}</div>
-              <div className='post-content'>{renderPostContent(postData)}</div>
-              <div className='post-data'>{renderPostData(postData)}</div>
-              <div className='post-comments'>{renderPostComments(postData)}</div>
+              <div className='post-title-full'>{renderPostTitle(postData)}</div>
+              <div className='post-content-full'>{renderPostContent(postData)}</div>
+              <div className='post-data'>
+                <span className="post-data-time-full">{renderPostData(postData)}</span>
+                {renderPostComments(postData)}
+                </div>
             </div>
           </div>
           <div className="comments-wrapper">
-            <br/>*WIP comments section
+            {postData.PostComments.map((comment: PostCommentInterface, idx: number) => 
+              <div className='post-comment-wrapper' key={idx}>
+                <div className='post-comment-author'>
+                  <a href={'/user/' + comment.User.username}>{comment.User.username}</a>
+                  <span className='post-comment-time'>{timeDifference(new Date(), new Date(comment.createdAt))}</span>
+                </div>
+                <hr />
+                <span>{comment.content}</span>
+              </div>
+            )}
           </div> 
         </> : 
         "Loading..."

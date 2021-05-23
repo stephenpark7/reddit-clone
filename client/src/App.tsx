@@ -7,7 +7,7 @@ import Category from './pages/Category';
 import Post from './pages/Post';
 import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
-import './stylesheets/App.css';
+import './stylesheets/App/App.css';
 
 import { UserContext } from './UserContext';
 

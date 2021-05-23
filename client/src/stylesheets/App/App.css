@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #aaaaaa;
+  background-color: #131313;
+  font-family: "IBM Plex Sans";
+  font-size: 12px;
+  margin: 0;
+}
+
+.page-wrapper {
+  padding: 0 10vw;
+  font-size: 1.2em;
+  margin-top: 1em;
+}
+.page-wrapper h1 {
+  margin: 0 0 0.5em 0;
+}
+.page-wrapper .category-title a:hover {
+  color: white;
+}
+
+/*# sourceMappingURL=App.css.map */

@@ -1,0 +1,49 @@
+.post-wrapper {
+    .post-title-full {
+        font-weight: 600;
+        font-size: 1.5em;
+        color: inherit;
+    }
+
+    .post-content-full {
+        color: rgb(206, 206, 206);
+        font-size: 1.1em;
+        padding: 0.25em 0 0.3em 0;
+    }
+
+    .post-data-time-full {
+        margin-right: 0.5em;
+    }
+}
+
+.comments-wrapper {
+    background-color: rgb(38, 38, 38);
+    padding: 0.3em 0.6em;
+
+    .post-comment-wrapper {
+        position: relative;
+    
+        .post-comment-author {
+            a {
+                color: rgb(225, 225, 225);
+            }
+
+            a:hover {
+                color: rgb(255, 255, 255);
+            }
+    
+            .post-comment-time {
+                position: absolute;
+                right: 0;
+                font-size: 0.8em;
+            }
+        }
+    
+        hr {
+            color: rgba(70, 70, 70, 0.666);
+            margin: 0.2em 0 0.5em 0;
+        }
+    }
+}
+
+

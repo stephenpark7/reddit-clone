@@ -1,12 +1,8 @@
-* {
-  box-sizing: border-box;
-}
-
 .navbar {
   padding: 0 10vw;
   display: flex;
-  background-color: rgb(32, 32, 32);
-  box-shadow: 0px 0px 6px 4px rgb(16, 16, 16);
+  background-color: #202020;
+  box-shadow: 0px 0px 6px 4px #101010;
   height: 48px;
 }
 
@@ -14,7 +10,7 @@
   align-self: center;
   font-size: 2em;
   margin-right: auto;
-  color: rgb(225, 225, 225);
+  color: #e1e1e1;
 }
 
 .nav-link {
@@ -44,7 +40,7 @@
   right: 0px;
   bottom: 0px;
   opacity: 0;
-  border-bottom: 1px solid rgb(128, 128, 128);
+  border-bottom: 1px solid gray;
 }
 
 a {
@@ -58,7 +54,9 @@ a {
 }
 
 .nav-link.active::after {
-  background-color: rgb(46, 46, 46);
+  background-color: #2e2e2e;
   opacity: 1;
-  border-bottom: 3px solid rgb(128, 128, 128);
+  border-bottom: 3px solid gray;
 }
+
+/*# sourceMappingURL=Navbar.css.map */

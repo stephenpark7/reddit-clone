@@ -1,0 +1,38 @@
+.post-wrapper .post-title-full {
+  font-weight: 600;
+  font-size: 1.5em;
+  color: inherit;
+}
+.post-wrapper .post-content-full {
+  color: #cecece;
+  font-size: 1.1em;
+  padding: 0.25em 0 0.3em 0;
+}
+.post-wrapper .post-data-time-full {
+  margin-right: 0.5em;
+}
+
+.comments-wrapper {
+  background-color: #262626;
+  padding: 0.3em 0.6em;
+}
+.comments-wrapper .post-comment-wrapper {
+  position: relative;
+}
+.comments-wrapper .post-comment-wrapper .post-comment-author a {
+  color: #e1e1e1;
+}
+.comments-wrapper .post-comment-wrapper .post-comment-author a:hover {
+  color: white;
+}
+.comments-wrapper .post-comment-wrapper .post-comment-author .post-comment-time {
+  position: absolute;
+  right: 0;
+  font-size: 0.8em;
+}
+.comments-wrapper .post-comment-wrapper hr {
+  color: rgba(70, 70, 70, 0.666);
+  margin: 0.2em 0 0.5em 0;
+}
+
+/*# sourceMappingURL=Post.css.map */

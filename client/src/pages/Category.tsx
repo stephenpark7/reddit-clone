@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useState } from 'react';
 import { UserContext } from '../UserContext';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
-import '../stylesheets/Category.css';
+import '../stylesheets/Category/Category.css';
 import { PostInterface } from '../interfaces/Post';
 import { timeDifference } from '../js/functions';
 
@@ -49,7 +49,7 @@ export default function Home() {
 
   return (
     <div className='page-wrapper'>
-      <h1><a href={'/category/' + categoryId}>{categoryId}</a></h1>
+      <h1 className='category-title'>{categoryId}</h1>
       {fetchFlag ?
         postData.length > 0 ?
           postData.map((post: PostInterface, idx: number) =>
