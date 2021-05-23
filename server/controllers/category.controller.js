@@ -26,16 +26,16 @@ exports.getPosts = async (req, res) => {
       attributes: ['post_id', 'type', 'title', 'content', 'upvotes', 'downvotes', 'createdAt'],
       where: { category_id: categoryData.category_id },
       include: [
-        { model: User, attributes: ['username'] }, 
+        { model: User, attributes: ['username'] },
         { model: PostComment, attributes: ['comment_id'] }
       ],
       order: [
         ['post_id', 'DESC']
       ],
     });
-    
+
     res.status(200).json(postData);
-  } catch(err) {
+  } catch (err) {
     res.status(400).send('Failed to get tweets.');
   }
 }
@@ -57,7 +57,7 @@ exports.createPost = async (req, res) => {
       content: content,
     });
     res.status(200).json(post);
-  } catch(err) {
+  } catch (err) {
     res.status(400).send('Failed to create an post.');
   }
 }
@@ -71,19 +71,22 @@ exports.createPostComment = async (req, res) => {
       res.status(200).send("Missing parameter(s).");
       return;
     }
-    const postComment = await PostComment.create({
+    const userData = await User.findOne({ where: { user_id: req.userId } });
+    let postComment = PostComment.build({
       post_id: postId,
       user_id: req.userId,
-      content: content
-    })
+      content: content,
+    });
+    postComment.dataValues.User = userData;
+    await postComment.save();
     res.status(200).json(postComment);
-  } catch(err) {
+  } catch (err) {
     res.status(400).send('Failed to create a post comment.');
   }
 }
 
-// Get a post
-exports.getPost = async (req, res) => {
+// Get post data (content, title, upvotes, downvotes, comments, etc.)
+exports.getPostData = async (req, res) => {
   try {
     const { postId } = req.params;
     if (!postId) {
@@ -94,7 +97,7 @@ exports.getPost = async (req, res) => {
       attributes: ['type', 'title', 'content', 'upvotes', 'downvotes', 'createdAt'],
       where: { post_id: postId },
       include: [
-        { model: User, attributes: ['username'] }, 
+        { model: User, attributes: ['username'] },
       ],
       raw: true,
       nest: true,
@@ -103,12 +106,12 @@ exports.getPost = async (req, res) => {
       attributes: ['comment_id', 'content', 'createdAt'],
       where: { post_id: postId },
       include: [
-        { model: User, attributes: ['username'] }, 
+        { model: User, attributes: ['username'] },
       ],
     });
     post.PostComments = PostComments;
     res.status(200).json(post);
-  } catch(err) {
+  } catch (err) {
     res.status(400).send('Failed to get a post.');
   }
 }

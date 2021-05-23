@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { UserContext } from '../UserContext';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
 import '../stylesheets/Category/Category.css';
 import '../stylesheets/Post/Post.css';
@@ -17,6 +17,36 @@ export default function Post() {
   const history = useHistory();
   const { postId } = useParams<{ postId: string }>();
 
+  async function handleAddComment(e: React.FormEvent): Promise<void> {
+    e.preventDefault();
+    const textAreaElement: HTMLInputElement = document.querySelector(".add-comment-textarea") as HTMLInputElement;
+    const message: string = textAreaElement.value;
+    if (!message || !userData.access_token) return;
+    try {
+      const res: AxiosResponse = await axios({
+        method: 'post', 
+        url: `/api/category/${categoryId}/${postId}`, 
+        withCredentials: true, 
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': userData.access_token
+        }, 
+        data: {
+          content: message
+        }
+      });
+      const newComment = res.data;
+      setPostData({...postData, PostComments: [newComment, ...postData.PostComments]});
+      textAreaElement.value = '';
+    } catch (err) {
+      if (err.response) {
+        console.log(err.response.data)
+      } else {
+        console.log(err);
+      }
+    }
+  }
+
   const getPostData = useCallback(() => {
     axios({
       method: 'get',
@@ -27,7 +57,7 @@ export default function Post() {
         'x-access-token': userData.accessToken
       }
     }).then(res => {
-      console.log(res.data);
+      // console.log(res.data);
       setPostData(res.data);
       setFetchFlag(true);
     }).catch(err => {
@@ -80,7 +110,7 @@ export default function Post() {
                 </div>
                 <textarea name='add-comment-textarea' className='add-comment-textarea' placeholder='enter your comment' required></textarea>
                 <div className="add-comment-button-wrapper">
-                  <button type='submit' className='add-comment-button'>Add Comment</button>
+                  <button type='submit' className='add-comment-button' onClick={handleAddComment}>Add Comment</button>
                 </div>
               </div>
             </form>

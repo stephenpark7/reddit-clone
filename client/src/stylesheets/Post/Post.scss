@@ -16,7 +16,7 @@
     }
 }
 
-.add-comment-form-wrapper, .comments-wrapper {
+.add-comment-form-wrapper, .post-comment-wrapper {
     position: relative;
     background-color: rgb(38, 38, 38);
     padding: 0.4em 0.6em 0.45em 0.6em;
@@ -50,6 +50,7 @@
     }
 
     .post-comment-wrapper {
+        margin-bottom: 2.5em;
         .post-comment-author {
             a {
                 color: rgb(225, 225, 225);
