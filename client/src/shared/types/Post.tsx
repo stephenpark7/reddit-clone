@@ -1,7 +1,7 @@
-import { User } from './User';
-import { PostCommentInterface } from './PostComment';
+import { TUser } from './User';
+import { TPostComment } from './PostComment';
 
-export interface PostInterface {
+export type TPost = {
   post_id: string;
   user_id: number;
   category_id: number;
@@ -12,6 +12,6 @@ export interface PostInterface {
   downvotes: number;
   createdAt: string;
   updatedAt: string;
-  User: User;
-  PostComments: Array<PostCommentInterface>;
+  User: TUser;
+  PostComments: Array<TPostComment>;
 }

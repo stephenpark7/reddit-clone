@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import { UserContext } from '../UserContext';
-import '../stylesheets/Home/Home.css';
+import { UserContext } from '../../shared/utils/userContext';
+import './styles.css';
 
 export default function Home() {
   const userContext = useContext(UserContext);
-  const { userData, setUserData } = userContext;
+  const { state: userData, setState: setUserData } = userContext;
 
   // console.log(userData);
 

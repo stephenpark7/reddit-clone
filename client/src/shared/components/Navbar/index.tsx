@@ -1,12 +1,14 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useContext } from 'react';
-import { UserContext } from '../UserContext';
+import { UserContext } from '../../utils/userContext';
+import './styles.scss';
+import { TUserContext } from '../../types/UserContext';
 
-import '../stylesheets/Navbar/Navbar.css';
+const siteName = 'ClonedIt';
 
 export default function Navbar() {
-  const userContext = useContext(UserContext);
-  const { userData, setUserData } = userContext;
+  const userContext = useContext(UserContext) as TUserContext;
+  const { state: userData, setState: setUserData } = userContext;
 
   function logOut() {
     if (!userData) return;
@@ -20,7 +22,7 @@ export default function Navbar() {
 
   return (
     <div className='navbar'>
-      <NavLink className='nav-title' to='/' exact>asperitas</NavLink>
+      <NavLink className='nav-title' to='/' exact>{siteName}</NavLink>
       {userData.username ?
         <>
           <NavLink className='nav-link' to={'/u/' + userData.username} exact>{userData.username}</NavLink>

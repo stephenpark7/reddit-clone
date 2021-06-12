@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { UserContext } from '../UserContext';
-import '../stylesheets/SignUp/SignUp.css';
+import { UserContext } from '../../shared/utils/userContext';
+import '../SignUp/styles.css';
 import axios, { AxiosResponse } from 'axios';
+import { TUserContext } from '../../shared/types/UserContext';
 
 export default function LogIn() {
-  const userContext = useContext(UserContext);
-  const { setUserData } = userContext;
+  const userContext = useContext(UserContext) as TUserContext;
+  const { state: userData, setState: setUserData } = userContext;
   const history = useHistory();
 
   async function handleSubmit(e: React.FormEvent): Promise<void> {

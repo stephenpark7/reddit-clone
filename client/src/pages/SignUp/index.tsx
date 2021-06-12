@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import '../stylesheets/SignUp/SignUp.css';
+import './styles.css';
 import axios, { AxiosResponse } from 'axios';
 
 export default function SignUp() {

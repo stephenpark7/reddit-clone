@@ -1,16 +1,17 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
-import { UserContext } from '../UserContext';
+import { UserContext } from '../../shared/utils/userContext';
 import axios, { AxiosResponse } from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
-import '../stylesheets/Category/Category.css';
-import '../stylesheets/Post/Post.css';
-import { PostInterface } from '../interfaces/Post';
-import { PostCommentInterface } from '../interfaces/PostComment';
-import { timeDifference } from '../js/functions';
+import '../Category/styles.scss';
+import '../Post/styles.scss';
+import { TPost } from '../../shared/types/Post';
+import { TPostComment } from '../../shared/types/PostComment';
+import { timeDifference } from '../../shared/utils/dateTime';
+import { TUserContext } from '../../shared/types/UserContext';
 
 export default function Post() {
-  const userContext = useContext(UserContext);
-  const { userData, setUserData } = userContext;
+  const userContext = useContext(UserContext) as TUserContext;
+  const { state: userData, setState: setUserData } = userContext;
   const { categoryId } = useParams<{ categoryId: string }>();
   const [postData, setPostData]: any = useState([]);
   const [fetchFlag, setFetchFlag] = useState(false);
@@ -54,7 +55,7 @@ export default function Post() {
       withCredentials: true,
       headers: {
         'Content-Type': 'application/json',
-        'x-access-token': userData.accessToken
+        'x-access-token': userData.access_token
       }
     }).then(res => {
       // console.log(res.data);
@@ -75,10 +76,10 @@ export default function Post() {
     getPostData();
   }, []);
 
-  const renderPostTitle = (post: PostInterface) => <>{post.title}</>;
-  const renderPostContent = (post: PostInterface) => post.type === 'link' ? <a href={post.content}>{post.content}</a> : <>{post.content}</>;
-  const renderPostData = (post: PostInterface) => <>Posted by <a href={'/user/' + post.User.username}>{post.User.username}</a> {timeDifference(new Date(), new Date(post.createdAt))}</>;
-  const renderPostComments = (post: PostInterface) => <><i className='far fa-comments'></i>{post.PostComments.length} {post.PostComments.length === 0 ? 'comments' : 'comment'}</>;
+  const renderPostTitle = (post: TPost) => <>{post.title}</>;
+  const renderPostContent = (post: TPost) => post.type === 'link' ? <a href={post.content}>{post.content}</a> : <>{post.content}</>;
+  const renderPostData = (post: TPost) => <>Posted by <a href={'/user/' + post.User.username}>{post.User.username}</a> {timeDifference(new Date(), new Date(post.createdAt))}</>;
+  const renderPostComments = (post: TPost) => <><i className='far fa-comments'></i>{post.PostComments.length} {post.PostComments.length === 1 ? "comment" : "comments"}</>;
 
   return (
     <div className='page-wrapper'>
@@ -116,7 +117,7 @@ export default function Post() {
             </form>
           </div>
           <div className='comments-wrapper'>
-            {postData.PostComments.map((comment: PostCommentInterface, idx: number) =>
+            {postData.PostComments.map((comment: TPostComment, idx: number) =>
               <div className='post-comment-wrapper' key={idx}>
                 <div className='post-comment-author'>
                   <a href={'/user/' + comment.User.username}>{comment.User.username}</a>
