@@ -19,8 +19,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => {
+  res.send('test');
+});
+
 // api routing
-app.use('/api/', require('./routes.js'));
+app.use('/api/', require('./routes'));
 
 // serve production build
 if (PRODUCTION_MODE) {
@@ -32,5 +36,5 @@ if (PRODUCTION_MODE) {
 
 // start server
 app.listen(SERVER_PORT, () => {
-  console.log('Server started at port ' + SERVER_PORT);
+  console.log('reddit-clone server started at port ' + SERVER_PORT);
 });

@@ -11,7 +11,7 @@ export default function Home() {
   const userContext = useContext(UserContext) as TUserContext;
   const { state: userData, setState: setUserData } = userContext;
   const { categoryId } = useParams<{ categoryId: string }>();
-  const [postData, setPostData] = useState<TPost[]>();
+  const [postData, setPostData] = useState<TPost[]>([]);
   const [fetchFlag, setFetchFlag] = useState(false);
   const history = useHistory();
 
@@ -48,27 +48,33 @@ export default function Home() {
   const renderPostData = (post: TPost) => <>Posted by <a href={'/user/' + post.User.username}>{post.User.username}</a> {timeDifference(new Date(), new Date(post.createdAt))}</>;
   const renderPostComments = (post: TPost) => <><i className='far fa-comments'></i><a href={'/category/' + categoryId + '/' + post.post_id}>{post.PostComments.length} {post.PostComments.length === 1 ? "comment" : "comments"}</a></>;
 
+  const renderPost = (post: TPost, idx: number) => 
+    <div className='post-wrapper' key={idx}>
+      <div className='vote-wrapper'>
+        <button className='vote-arrow-up'><i className='fas fa-arrow-up'></i></button>
+        <span className='vote-score'>{post['upvotes'] - post['downvotes']}</span>
+        <button className='vote-arrow-down'><i className='fas fa-arrow-down'></i></button>
+      </div>
+      <div className='content-wrapper'>
+        <div className='post-title'>{renderPostTitle(post)}</div>
+        <div className='post-content'>{renderPostContent(post)}</div>
+        <div className='post-data'>{renderPostData(post)}</div>
+        <div className='post-comments'>{renderPostComments(post)}</div>
+      </div>
+    </div>;
+
   return (
     <div className='page-wrapper'>
       <h1 className='category-title'>{categoryId}</h1>
-      <button className='create-post-button'>Create Post</button>
       {fetchFlag ?
-        postData && postData.length > 0 ?
-          postData.map((post: TPost, idx: number) =>
-            <div className='post-wrapper' key={idx}>
-              <div className='vote-wrapper'>
-                <button className='vote-arrow-up'><i className='fas fa-arrow-up'></i></button>
-                <span className='vote-score'>{post['upvotes'] - post['downvotes']}</span>
-                <button className='vote-arrow-down'><i className='fas fa-arrow-down'></i></button>
-              </div>
-              <div className='content-wrapper'>
-                <div className='post-title'>{renderPostTitle(post)}</div>
-                <div className='post-content'>{renderPostContent(post)}</div>
-                <div className='post-data'>{renderPostData(post)}</div>
-                <div className='post-comments'>{renderPostComments(post)}</div>
-              </div>
-            </div>) :
-          <div>There are no posts in this category.</div> : 
+        <>
+          <div className='create-post-button-wrapper'>
+            <button className='create-post-button'>Create Post</button>
+          </div>
+          {postData.length > 0 ? postData.map((post: TPost, idx: number) => renderPost(post, idx)) :
+          <div>There are no posts in this category.</div>}
+        </>
+          : 
         "Loading..."
       }
     </div>

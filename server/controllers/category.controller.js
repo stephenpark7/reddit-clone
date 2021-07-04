@@ -1,13 +1,8 @@
-const { post } = require('../routes');
-// const { User } = require('../database');
 const db = require('../database');
-const User = db.User;
-const Category = db.Category;
-const Post = db.Post;
-const PostComment = db.PostComment;
+const { User, Category, Post, PostComment } = db;
 
-// Get list of posts
-exports.getPosts = async (req, res) => {
+// Get all posts
+exports.getAllPosts = async (req, res) => {
   const { categoryName } = req.params;
   if (!categoryName) return;
   try {
@@ -86,7 +81,7 @@ exports.createPostComment = async (req, res) => {
 }
 
 // Get post data (content, title, upvotes, downvotes, comments, etc.)
-exports.getPostData = async (req, res) => {
+exports.getPostDataById = async (req, res) => {
   try {
     const { postId } = req.params;
     if (!postId) {

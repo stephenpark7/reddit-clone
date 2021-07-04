@@ -15,7 +15,7 @@ export default function LogIn() {
     const { username, password } = getFormElements();
     if (!username.value || !password.value) return;
     try {
-      const res: AxiosResponse = await axios.post('/api/login', {
+      const res: AxiosResponse = await axios.post(`${process.env.REACT_APP_API_URL}/user/login`, {
         "username": username.value, 
         "password": password.value
       });
