@@ -38,9 +38,9 @@ exports.getAllPosts = async (req, res) => {
 // Create a post
 exports.createPost = async (req, res) => {
   try {
-    const { categoryName } = req.params;
+    // const { categoryName } = req.params;
     const { type, title, content, category_id } = req.query;
-    if (!categoryName || !type || !title || !content || !category_id) {
+    if (!type || !title || !content || !category_id) {
       res.status(200).send("Missing parameter(s).");
       return;
     }
@@ -103,6 +103,7 @@ exports.getPostDataById = async (req, res) => {
       include: [
         { model: User, attributes: ['username'] },
       ],
+      order: [['createdAt', 'DESC']]
     });
     post.PostComments = PostComments;
     res.status(200).json(post);

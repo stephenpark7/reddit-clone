@@ -8,6 +8,8 @@ const jwtSecret = process.env.JWT_SECRET;
 
 // Create a new account
 exports.create = async (req, res) => {
+  console.log(req)
+
   const { username, password } = req.body;
 
   // Check for missing fields

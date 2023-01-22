@@ -2,9 +2,11 @@ require('dotenv').config();
 
 // express, path, cors, dotenv
 const express = require('express');
+const morgan = require('morgan');
 const path = require('path');
 const cors = require('cors');
 const app = express();
+const router = require('./routes');
 
 // database set up
 const db = require('./database');
@@ -15,16 +17,13 @@ const SERVER_PORT = process.env.PORT || 5000;
 const PRODUCTION_MODE = process.env.NODE_ENV === 'production';
 
 // cors, json parser, bodyparser
+app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-  res.send('test');
-});
-
 // api routing
-app.use('/api/', require('./routes'));
+app.use('/api/', router);
 
 // serve production build
 if (PRODUCTION_MODE) {
