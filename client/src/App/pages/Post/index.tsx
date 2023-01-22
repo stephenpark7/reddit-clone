@@ -68,8 +68,6 @@ export default function Post() {
   }
 
   async function handleEditComment(e: React.FormEvent): Promise<void> {
-    console.log('test');
-
   }
 
   const renderPostTitle = (post: PostType) => <>{post.title}</>;

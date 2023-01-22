@@ -4,7 +4,6 @@ const userController = require('../controllers/user.controller');
 // api/user
 
 router.post('/signup', async (req, res) => {
-  console.log('test');
   await userController.create(req, res);
 });
 
