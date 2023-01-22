@@ -16,8 +16,8 @@ export default function LogIn() {
     if (!username.value || !password.value) return;
     try {
       const res: AxiosResponse = await axios.post(`${process.env.REACT_APP_API_URL}/user/login`, {
-        "username": username.value, 
-        "password": password.value
+        'username': username.value, 
+        'password': password.value
       });
       localStorage.setItem('token', JSON.stringify(res.data));
       setUserData(res.data);
@@ -35,13 +35,13 @@ export default function LogIn() {
 
   function clearForm(): void {
     const { username, password } = getFormElements();
-    username.value = "";
-    password.value = "";
+    username.value = '';
+    password.value = '';
   }
 
   function getFormElements(): { username: HTMLInputElement, password: HTMLInputElement } {
-    const username: HTMLInputElement = (document.querySelector("#username") as HTMLInputElement);
-    const password: HTMLInputElement = (document.querySelector("#password") as HTMLInputElement);
+    const username: HTMLInputElement = (document.querySelector('#username') as HTMLInputElement);
+    const password: HTMLInputElement = (document.querySelector('#password') as HTMLInputElement);
     return { username, password };
   }
 

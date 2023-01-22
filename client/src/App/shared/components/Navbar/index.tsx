@@ -14,9 +14,9 @@ export default function Navbar() {
     if (!userData) return;
     localStorage.removeItem('token');
     setUserData({
-      "user_id": "",
-      "username": "",
-      "access_token": "",
+      'user_id': '',
+      'username': '',
+      'access_token': '',
     });
   }
 

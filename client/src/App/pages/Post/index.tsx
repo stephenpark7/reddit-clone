@@ -42,7 +42,7 @@ export default function Post() {
 
   async function handleAddComment(e: React.FormEvent): Promise<void> {
     e.preventDefault();
-    const textAreaElement: HTMLInputElement = document.querySelector(".add-comment-textarea") as HTMLInputElement;
+    const textAreaElement: HTMLInputElement = document.querySelector('.add-comment-textarea') as HTMLInputElement;
     const message: string = textAreaElement.value;
     console.log(userData.access_token)
     if (!message || !userData.access_token) return;
@@ -75,7 +75,7 @@ export default function Post() {
   const renderPostTitle = (post: PostType) => <>{post.title}</>;
   const renderPostContent = (post: PostType) => post.type === 'link' ? <a href={post.content}>{post.content}</a> : <>{post.content}</>;
   const renderPostData = (post: PostType) => <>Posted by <a href={'/user/' + post.User.username}>{post.User.username}</a> {timeDifference(new Date(), new Date(post.createdAt))}</>;
-  const renderPostComments = (post: PostType) => <><i className='far fa-comments comments-icon'></i>{post.PostComments.length} {post.PostComments.length === 1 ? "comment" : "comments"}</>;
+  const renderPostComments = (post: PostType) => <><i className='far fa-comments comments-icon'></i>{post.PostComments.length} {post.PostComments.length === 1 ? 'comment' : 'comments'}</>;
 
   return (
     // <div className='page-container'>
@@ -107,7 +107,7 @@ export default function Post() {
                   <span className='add-comment-textarea-label'>Comment as <a href={'/user/' + userData.username}>{userData.username}</a></span>
                 </div>
                 <textarea name='add-comment-textarea' className='add-comment-textarea' placeholder='enter your comment' required></textarea>
-                <div className="add-comment-button-container">
+                <div className='add-comment-button-container'>
                   <button type='submit' className='add-comment-button' onClick={handleAddComment}>Add Comment</button>
                 </div>
               </div>

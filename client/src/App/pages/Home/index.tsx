@@ -10,8 +10,8 @@ export default function Home() {
   return (
     <div className={styles.pageContainer}>
       {/* <h1>Homepage</h1> */}
-      {userData ? "Welcome " + userData.username
-      : ""}
+      {userData ? 'Welcome ' + userData.username
+      : ''}
     </div>
   );
 }

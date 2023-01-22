@@ -41,7 +41,7 @@ exports.createPost = async (req, res) => {
     // const { categoryName } = req.params;
     const { type, title, content, category_id } = req.query;
     if (!type || !title || !content || !category_id) {
-      res.status(200).send("Missing parameter(s).");
+      res.status(200).send('Missing parameter(s).');
       return;
     }
     const post = await Post.create({
@@ -63,7 +63,7 @@ exports.createPostComment = async (req, res) => {
     const { postId } = req.params;
     const { content } = req.body;
     if (!postId || !content) {
-      res.status(200).send("Missing parameter(s).");
+      res.status(200).send('Missing parameter(s).');
       return;
     }
     const userData = await User.findOne({ where: { user_id: req.userId } });
@@ -85,7 +85,7 @@ exports.getPostDataById = async (req, res) => {
   try {
     const { postId } = req.params;
     if (!postId) {
-      res.status(200).send("Missing parameter(s).");
+      res.status(200).send('Missing parameter(s).');
       return;
     }
     let post = await Post.findOne({

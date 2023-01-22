@@ -17,8 +17,8 @@ export default function SignUp() {
     }
     try {
       const res: AxiosResponse = await axios.post('/api/user/signup', {
-        "username": username.value, 
-        "password": password.value
+        'username': username.value, 
+        'password': password.value
       });
       console.log(res.data);
       history.push('/login');
@@ -35,15 +35,15 @@ export default function SignUp() {
 
   function clearForm(): void {
     const { username, password, confirmPassword } = getFormElements();
-    username.value = "";
-    password.value = "";
-    confirmPassword.value = "";
+    username.value = '';
+    password.value = '';
+    confirmPassword.value = '';
   }
 
   function getFormElements(): { username: HTMLInputElement, password: HTMLInputElement, confirmPassword: HTMLInputElement } {
-    const username: HTMLInputElement = (document.querySelector("#username") as HTMLInputElement);
-    const password: HTMLInputElement = (document.querySelector("#password") as HTMLInputElement);
-    const confirmPassword: HTMLInputElement = (document.querySelector("#confirm-password") as HTMLInputElement);
+    const username: HTMLInputElement = (document.querySelector('#username') as HTMLInputElement);
+    const password: HTMLInputElement = (document.querySelector('#password') as HTMLInputElement);
+    const confirmPassword: HTMLInputElement = (document.querySelector('#confirm-password') as HTMLInputElement);
     return { username, password, confirmPassword };
   }
 

@@ -1,9 +1,9 @@
 const db = require('../database');
 const User = db.User;
-const bcrypt = require("bcryptjs");
+const bcrypt = require('bcryptjs');
 const validator = require('validator');
 
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 const jwtSecret = process.env.JWT_SECRET;
 
 // Create a new account
