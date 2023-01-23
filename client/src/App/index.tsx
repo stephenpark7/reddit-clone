@@ -21,7 +21,7 @@ export default function App() {
   }, []);
 
   return (
-    <UserContext.Provider value={{state: userData, setState: setUserData}}>
+    <UserContext.Provider value={{ state: userData, setState: setUserData }}>
       <Router>
         <Navbar />
         <Switch>

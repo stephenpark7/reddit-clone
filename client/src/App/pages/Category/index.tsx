@@ -1,6 +1,6 @@
+import axios from 'axios';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../shared/utils/userContext';
-import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
 import styles from '../../styles/Category.module.scss';
 import { Post as PostType } from '../../shared/types/Post';
@@ -11,8 +11,8 @@ export default function Home() {
   const userContext = useContext(UserContext) as UserContextType;
   const { state: userData, setState: setUserData } = userContext;
   const { categoryId } = useParams<{ categoryId: string }>();
-  const [postData, setPostData] = useState<PostType[]>([]);
-  const [fetchFlag, setFetchFlag] = useState(false);
+  const [ posts, setPosts ] = useState<PostType[]>([]);
+  const [ fetchFlag, setFetchFlag ] = useState(false);
   const history = useHistory();
 
   const getCategoryData = useCallback(() => {
@@ -26,7 +26,7 @@ export default function Home() {
       }
     }).then(res => {
       console.log(res.data);
-      setPostData(res.data);
+      setPosts(res.data);
       setFetchFlag(true);
     }).catch(err => {
       if (err) {
@@ -60,7 +60,7 @@ export default function Home() {
       }
     }).then(res => {
       console.log(res.data);
-      setPostData(res.data);
+      setPosts(res.data);
       setFetchFlag(true);
     }).catch(err => {
       if (err) {
@@ -108,18 +108,15 @@ export default function Home() {
     </div>;
 
   return (
-    <div className={styles.pageContainer}>
+    <div className={styles.container}>
       <h1 className={styles.categoryTitle}>{categoryId}</h1>
-      {fetchFlag ?
-        <>
-          <div className={styles.createPostButtonContainer}>
-            <button className={styles.createPostButton} onClick={handleCreatePost}>Create Post</button>
-          </div>
-          {postData.length > 0 ? postData.map((post: PostType, idx: number) => renderPost(post, idx)) :
-            <div>There are no posts in this category.</div>}
-        </> :
-        'Loading...'
-      }
+      {fetchFlag ? <>
+        <div className={styles.createPostButtonContainer}>
+          <a className={styles.createPostButton} onClick={handleCreatePost}>Create Post</a>
+        </div>
+        {posts.length > 0 ? posts.map((post: PostType, idx: number) => renderPost(post, idx)) :
+          <div>There are no posts in this category.</div>}
+      </> : 'Loading...'}
     </div>
   );
 }
