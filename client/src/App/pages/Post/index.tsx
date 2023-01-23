@@ -44,9 +44,8 @@ export default function Post() {
 
   async function handleAddComment(e: React.FormEvent): Promise<void> {
     e.preventDefault();
-    const textAreaElement: HTMLInputElement = document.querySelector('.add-comment-textarea') as HTMLInputElement;
+    const textAreaElement: HTMLInputElement = document.querySelector('textarea[name=add-comment-textarea]') as HTMLInputElement;
     const message: string = textAreaElement.value;
-    console.log(userData.access_token)
     if (!message || !userData.access_token) return;
     try {
       const res: AxiosResponse = await axios({
