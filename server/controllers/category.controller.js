@@ -25,7 +25,7 @@ exports.getAllPosts = async (req, res) => {
         { model: PostComment, attributes: ['comment_id'] }
       ],
       order: [
-        ['post_id', 'DESC']
+        ['post_id', 'ASC']
       ],
     });
 
