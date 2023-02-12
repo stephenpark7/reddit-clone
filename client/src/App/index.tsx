@@ -13,7 +13,7 @@ import './styles/App.scss';
 import { DefaultUserState, UserContext } from './shared/utils/userContext';
 
 export default function App() {
-  const [userData, setUserData] = useState<UserData>(DefaultUserState);
+  const [ userData, setUserData ] = useState<UserData>(DefaultUserState);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -28,8 +28,8 @@ export default function App() {
           <Route exact path='/'><Home /></Route>
           <Route exact path='/signup'><SignUp /></Route>
           <Route exact path='/login'><LogIn /></Route>
-          <Route exact path='/category/:categoryId'><Category /></Route>
-          <Route exact path='/category/:categoryId/:postId'><Post /></Route>
+          <Route exact path='/category/:categoryName'><Category /></Route>
+          <Route exact path='/category/:categoryName/:postId'><Post /></Route>
           <Route path='*'><NotFound /></Route>
         </Switch>
       </Router>

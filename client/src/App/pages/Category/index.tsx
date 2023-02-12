@@ -9,16 +9,17 @@ import { UserContext as UserContextType } from '../../shared/types/UserContext';
 
 export default function Home() {
   const userContext = useContext(UserContext) as UserContextType;
-  const { state: userData, setState: setUserData } = userContext;
-  const { categoryId } = useParams<{ categoryId: string }>();
+  const { state: userData } = userContext;
+  const { categoryName } = useParams<{ categoryName: string }>();
   const [ posts, setPosts ] = useState<PostType[]>([]);
   const [ fetchFlag, setFetchFlag ] = useState(false);
+  const [ createPostToggle, setCreatePostToggle ] = useState(false);
   const history = useHistory();
 
   const getCategoryData = useCallback(() => {
     axios({
       method: 'get',
-      url: '/api/category/' + categoryId,
+      url: '/api/category/' + categoryName,
       withCredentials: true,
       headers: {
         'Content-Type': 'application/json',
@@ -43,10 +44,22 @@ export default function Home() {
     });
   }, [userData]);
 
+  const handleCreatePostToggle = () => {
+    setCreatePostToggle(!createPostToggle)
+  };
+
   const handleCreatePost = () => {
+    const title = document.querySelector('input[name=create-post-title-input]') as HTMLInputElement;
+    const description = document.querySelector('textarea[name=create-post-content-textarea]') as HTMLInputElement;
+    if (title.value && description.value) {
+      createPost(title.value, description.value);
+    }
+  };
+
+  const createPost = (title: string, description: string) => {
     axios({
       method: 'post',
-      url: '/api/category/' + categoryId,
+      url: '/api/category/' + categoryName,
       withCredentials: true,
       headers: {
         'Content-Type': 'application/json',
@@ -55,15 +68,17 @@ export default function Home() {
       params: {
         category_id: 3,
         type: 1,
-        title: 'test',
-        content: 'test'
+        title: title,
+        content: description
       }
     }).then(res => {
       console.log(res.data);
-      setPosts(res.data);
+      // TODO: need to join with PostComments and User
+      setPosts([ ...posts, res.data ]);
       setFetchFlag(true);
     }).catch(err => {
       if (err) {
+        console.log(err)
         const errorMessage = err.response.data;
         if (errorMessage) {
           console.log(errorMessage);
@@ -82,15 +97,31 @@ export default function Home() {
   }, []);
 
   const renderPostTitle = (post: PostType) => post.type === 'link' ?
-    <a href={post.content}>{post.title}</a> :
-    <a href={'/category/' + categoryId + '/' + post.post_id}>{post.title}</a>
+    <a href={post.content}>
+      {post.title}
+    </a> :
+    <a href={'/category/' + categoryName + '/' + post.post_id}>
+      {post.title}
+    </a>
+
   const renderPostContent = (post: PostType) => post.type === 'link' ?
-    <a href={post.content}>{post.content}</a> :
-    <>{post.content}</>;
-  const renderPostData = (post: PostType) =>
-    <>Posted by <a href={'/user/' + post.User.username}>{post.User.username}</a> {timeDifference(new Date(), new Date(post.createdAt))}</>;
-  const renderPostComments = (post: PostType) =>
-    <><i className='far fa-comments comments-icon'></i><a href={'/category/' + categoryId + '/' + post.post_id}>{post.PostComments.length} {post.PostComments.length === 1 ? 'comment' : 'comments'}</a></>;
+    <a href={post.content}>
+      {post.content}
+    </a> :
+    <>
+      {post.content}
+    </>;
+
+  const renderPostData = (post: PostType) => <>
+    Posted by <a href={'/user/' + post.User.username}>{post.User.username}</a> {timeDifference(new Date(), new Date(post.createdAt))}
+  </>;
+
+  const renderPostComments = (post: PostType) => <>
+    <i className='far fa-comments comments-icon'></i>
+    <a href={'/category/' + categoryName + '/' + post.post_id}>
+      {post.PostComments.length} {post.PostComments.length === 1 ? 'comment' : 'comments'}
+    </a>
+  </>;
 
   const renderPost = (post: PostType, idx: number) =>
     <div className={styles.postContainer} key={idx}>
@@ -107,16 +138,32 @@ export default function Home() {
       </div>
     </div>;
 
+  const renderedPosts = posts.length > 0 ? posts.map((post: PostType, idx: number) => renderPost(post, idx)) : <div>There are no posts in this category.</div>;
+
   return (
     <div className={styles.container}>
-      <h1 className={styles.categoryTitle}>{categoryId}</h1>
-      {fetchFlag ? <>
-        <div className={styles.createPostButtonContainer}>
-          <a className={styles.createPostButton} onClick={handleCreatePost}>Create Post</a>
+      <h1 className={styles.categoryTitle}>{categoryName}</h1>
+      <div className={styles.createPostButtonContainer}>
+        <a className={styles.createPostButton} 
+           onClick={handleCreatePostToggle}>{!createPostToggle ? 'Create Post' : 'Hide'}</a>
+      </div>
+      {createPostToggle && 
+      <div className={styles.createPostContainer}>
+        <input type='text' 
+               name='create-post-title-input' 
+               className={styles.createPostTitleInput} 
+               placeholder='enter your title' 
+               required />
+        <textarea name='create-post-content-textarea' 
+                  className={styles.createPostDescriptionTextArea} 
+                  placeholder='enter your content' 
+                  required />
+        <div className={styles.innerCreatePostButtonContainer}>
+          <button className={styles.createPostButton}
+                  onClick={handleCreatePost}>Create Post</button>
         </div>
-        {posts.length > 0 ? posts.map((post: PostType, idx: number) => renderPost(post, idx)) :
-          <div>There are no posts in this category.</div>}
-      </> : 'Loading...'}
+      </div>}
+      {fetchFlag ? renderedPosts : 'Loading...'}
     </div>
   );
 }

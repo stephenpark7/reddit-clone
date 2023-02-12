@@ -9,12 +9,10 @@ import { PostComment as PostCommentType } from '../../shared/types/PostComment';
 import { timeDifference } from '../../shared/utils/dateTime';
 import { UserContext as UserContextType } from '../../shared/types/UserContext';
 
-console.log(styles)
-
 export default function Post() {
   const userContext = useContext(UserContext) as UserContextType;
   const { state: userData, setState: setUserData } = userContext;
-  const { categoryId } = useParams<{ categoryId: string }>();
+  const { categoryName } = useParams<{ categoryName: string }>();
   const [ postData, setPostData ]: any = useState([]);
   const [ fetchFlag, setFetchFlag ] = useState(false);
   const history = useHistory();
@@ -27,7 +25,7 @@ export default function Post() {
   const getPostData = useCallback(() => {
     axios({
       method: 'get',
-      url: `${process.env.REACT_APP_API_URL}/category/${categoryId}/${postId}`,
+      url: `${process.env.REACT_APP_API_URL}/category/${categoryName}/${postId}`,
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': userData.access_token
@@ -50,7 +48,7 @@ export default function Post() {
     try {
       const res: AxiosResponse = await axios({
         method: 'post', 
-        url: `${process.env.REACT_APP_API_URL}/category/${categoryId}/${postId}`, 
+        url: `${process.env.REACT_APP_API_URL}/category/${categoryName}/${postId}`, 
         headers: {
           'Content-Type': 'application/json',
           'x-access-token': userData.access_token
@@ -79,7 +77,7 @@ export default function Post() {
   return (
     <div className={styles.container}>
       <h1 className={styles.categoryTitle}>
-        <a href={'/category/' + categoryId}>{categoryId}</a>
+        <a href={'/category/' + categoryName}>{categoryName}</a>
       </h1>
       {fetchFlag ?
         <>
