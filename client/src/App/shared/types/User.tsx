@@ -1,7 +1,8 @@
 export type User = {
-  user_id: number;
   username: string;
-  points: string;
-  createdAt: string;
-  updatedAt: string;
+
+  user_id?: number;
+  points?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

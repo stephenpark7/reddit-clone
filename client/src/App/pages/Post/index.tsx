@@ -31,7 +31,6 @@ export default function Post() {
         'x-access-token': userData.access_token
       }
     }).then(res => {
-      // console.log(res.data);
       setPostData(res.data);
       setFetchFlag(true);
     }).catch(err => {
@@ -71,7 +70,7 @@ export default function Post() {
 
   const renderPostTitle = (post: PostType) => <>{post.title}</>;
   const renderPostContent = (post: PostType) => post.type === 'link' ? <a href={post.content}>{post.content}</a> : <>{post.content}</>;
-  const renderPostData = (post: PostType) => <>Posted by <a href={'/user/' + post.User.username}>{post.User.username}</a> {timeDifference(new Date(), new Date(post.createdAt))}</>;
+  const renderPostData = (post: PostType) => <>Posted by <a href={'/user/' + post.User?.username}>{post.User?.username}</a> {timeDifference(new Date(), new Date(post.createdAt))}</>;
   const renderPostComments = (post: PostType) => <><i className='far fa-comments comments-icon'></i>{post.PostComments.length} {post.PostComments.length === 1 ? 'comment' : 'comments'}</>;
 
   return (

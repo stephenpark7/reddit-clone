@@ -20,9 +20,8 @@ export default function SignUp() {
         'username': username.value, 
         'password': password.value
       });
-      console.log(res.data);
       history.push('/login');
-    } catch (err) {
+    } catch (err: any) {
       const errorMessage = err.response.data;
       if (errorMessage) {
         console.log(errorMessage);

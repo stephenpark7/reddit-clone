@@ -26,7 +26,6 @@ export default function Home() {
         'x-access-token': userData.access_token
       }
     }).then(res => {
-      console.log(res.data);
       setPosts(res.data);
       setFetchFlag(true);
     }).catch(err => {
@@ -72,9 +71,25 @@ export default function Home() {
         content: description
       }
     }).then(res => {
-      console.log(res.data);
+      let data: PostType = {
+        PostComments: [],
+        User: {
+          username: userData.username
+        },
+        content: res.data.content,
+        createdAt: res.data.createdAt,
+        downvotes: res.data.downvotes,
+        post_id: res.data.post_id,
+        title: res.data.title,
+        type: res.data.type,
+        upvotes: res.data.upvotes,
+        user_id: 0,
+        category_id: 0,
+        updatedAt: ''
+      }
       // TODO: need to join with PostComments and User
-      setPosts([ ...posts, res.data ]);
+
+      setPosts([ ...posts, data ]);
       setFetchFlag(true);
     }).catch(err => {
       if (err) {
@@ -113,13 +128,13 @@ export default function Home() {
     </>;
 
   const renderPostData = (post: PostType) => <>
-    Posted by <a href={'/user/' + post.User.username}>{post.User.username}</a> {timeDifference(new Date(), new Date(post.createdAt))}
+    Posted by <a href={'/user/' + post.User?.username}>{post.User?.username}</a> {timeDifference(new Date(), new Date(post.createdAt))}
   </>;
 
   const renderPostComments = (post: PostType) => <>
     <i className='far fa-comments comments-icon'></i>
     <a href={'/category/' + categoryName + '/' + post.post_id}>
-      {post.PostComments.length} {post.PostComments.length === 1 ? 'comment' : 'comments'}
+      {post.PostComments?.length ?? 0} {post.PostComments?.length === 1 ? 'comment' : 'comments'}
     </a>
   </>;
 
@@ -133,7 +148,7 @@ export default function Home() {
       <div className={styles.contentContainer}>
         <div className={styles.postTitle}>{renderPostTitle(post)}</div>
         <div className={styles.postContent}>{renderPostContent(post)}</div>
-        <div className={styles.postData}>{renderPostData(post)}</div>
+        <div className={styles.postData}>{renderPostData(post)}</div>z
         <div className={styles.postComments}>{renderPostComments(post)}</div>
       </div>
     </div>;

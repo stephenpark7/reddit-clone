@@ -6,7 +6,6 @@ export default function Home() {
   const userContext = useContext(UserContext);
   const { state: userData, setState: setUserData } = userContext;
 
-  // console.log(userData);
   return (
     <div className={styles.pageContainer}>
       {/* <h1>Homepage</h1> */}
