@@ -1,17 +1,9 @@
 {
   "name": "reddit-clone-server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "server": "nodemon server/index.js",
-    "client": "cd client && npm start",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "build": "cd client && npm run build",
-    "heroku-postbuild": "cd client && npm install && npm run build"
-  },
+  "version": "0.1.0",
   "author": "Stephen Park",
   "license": "ISC",
+  "main": "index.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
@@ -26,6 +18,10 @@
     "validator": "^13.6.0"
   },
   "devDependencies": {
-    "concurrently": "^5.3.0"
+    "concurrently": "^5.3.0",
+    "nodemon": "^3.0.1"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
   }
 }
