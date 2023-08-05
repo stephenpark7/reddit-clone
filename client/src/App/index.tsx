@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
@@ -24,14 +24,14 @@ export default function App() {
     <UserContext.Provider value={{ state: userData, setState: setUserData }}>
       <Router>
         <Navbar />
-        <Switch>
-          <Route exact path='/'><Home /></Route>
-          <Route exact path='/signup'><SignUp /></Route>
-          <Route exact path='/login'><LogIn /></Route>
-          <Route exact path='/category/:categoryName'><Category /></Route>
-          <Route exact path='/category/:categoryName/:postId'><Post /></Route>
-          <Route path='*'><NotFound /></Route>
-        </Switch>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/signup' element={<SignUp />} />
+          <Route path='/login' element={<LogIn />} />
+          <Route path='/category/:categoryName' element={<Category />} />
+          <Route path='/category/:categoryName/:postId' element={<Post />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
       </Router>
     </UserContext.Provider>
   );

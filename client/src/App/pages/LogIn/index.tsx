@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../shared/utils/userContext';
 import '../SignUp/styles.css';
 import axios, { AxiosResponse } from 'axios';
@@ -8,7 +8,7 @@ import { UserContext as UserContextType } from '../../shared/types/UserContext';
 export default function LogIn() {
   const userContext = useContext(UserContext) as UserContextType;
   const { state: userData, setState: setUserData } = userContext;
-  const history = useHistory();
+  const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent): Promise<void> {
     e.preventDefault();
@@ -21,7 +21,7 @@ export default function LogIn() {
       });
       localStorage.setItem('token', JSON.stringify(res.data));
       setUserData(res.data);
-      history.push('/');
+      navigate('/');
     } catch (err: any) {
       const errorMessage = err.response.data;
       if (errorMessage) {

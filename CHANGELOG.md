@@ -9,3 +9,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replaced single quote to double quote (preference)
 - Reorganized files for better client/server folder structure
 - Added yarn.lock files using yarn import
+- Updated react version from 17 to 18

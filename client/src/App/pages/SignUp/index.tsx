@@ -1,10 +1,10 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import axios, { AxiosResponse } from 'axios';
 
 export default function SignUp() {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent): Promise<void> {
     e.preventDefault();
@@ -20,7 +20,7 @@ export default function SignUp() {
         'username': username.value, 
         'password': password.value
       });
-      history.push('/login');
+      navigate('/login');
     } catch (err: any) {
       const errorMessage = err.response.data;
       if (errorMessage) {

@@ -1,7 +1,7 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../shared/utils/userContext';
 import axios, { AxiosResponse } from 'axios';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styles from '../../styles/Post.module.scss';
 // import '../Post/styles.scss';
 import { Post as PostType } from '../../shared/types/Post';
@@ -15,7 +15,7 @@ export default function Post() {
   const { categoryName } = useParams<{ categoryName: string }>();
   const [ postData, setPostData ]: any = useState([]);
   const [ fetchFlag, setFetchFlag ] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
   const { postId } = useParams<{ postId: string }>();
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../shared/utils/userContext';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styles from '../../styles/Category.module.scss';
 import { Post as PostType } from '../../shared/types/Post';
 import { timeDifference } from '../../shared/utils/dateTime';
@@ -14,7 +14,7 @@ export default function Home() {
   const [ posts, setPosts ] = useState<PostType[]>([]);
   const [ fetchFlag, setFetchFlag ] = useState(false);
   const [ createPostToggle, setCreatePostToggle ] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const getCategoryData = useCallback(() => {
     axios({
@@ -33,7 +33,7 @@ export default function Home() {
         const errorMessage = err.response.data;
         if (errorMessage) {
           console.log(errorMessage);
-          history.push('/404');
+          navigate('/404');
         } else {
           console.log(err);
         }
@@ -97,7 +97,7 @@ export default function Home() {
         const errorMessage = err.response.data;
         if (errorMessage) {
           console.log(errorMessage);
-          history.push('/404');
+          navigate('/404');
         } else {
           console.log(err);
         }

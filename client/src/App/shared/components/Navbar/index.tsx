@@ -22,16 +22,16 @@ export default function Navbar() {
 
   return (
     <nav className={styles.navbar}>
-      <NavLink className={styles.navbarTitle} to='/' exact>{siteName}</NavLink>
+      <NavLink className={styles.navbarTitle} to='/' >{siteName}</NavLink>
       {userData.username ?
         <>
-          <NavLink className={styles.navbarLink} to={'/u/' + userData.username} exact>{userData.username}</NavLink>
+          <NavLink className={styles.navbarLink} to={'/u/' + userData.username} >{userData.username}</NavLink>
           <Link className={styles.navbarLink} to={'/'} onClick={logOut}>Log out</Link>
         </>
         :
         <>
-          <NavLink className={styles.navbarLink} to='/signup' exact>sign up</NavLink>
-          <NavLink className={styles.navbarLink} to='/login' exact>log in</NavLink>
+          <NavLink className={styles.navbarLink} to='/signup' >sign up</NavLink>
+          <NavLink className={styles.navbarLink} to='/login' >log in</NavLink>
         </>
       }
     </nav>
