@@ -74,8 +74,8 @@ export default function Post() {
 
   const renderPostTitle = (post: PostType) => <>{post.title}</>;
   const renderPostContent = (post: PostType) => post.type === 'link' ? <a href={post.content}>{post.content}</a> : <>{post.content}</>;
-  const renderPostData = (post: PostType) => <>Posted by <a href={'/user/' + post.User?.username}>{post.User?.username}</a> {timeDifference(new Date(), new Date(post.createdAt))}</>;
-  const renderPostComments = (post: PostType) => <><i className='far fa-comments comments-icon'></i>{post.PostComments.length} {post.PostComments.length === 1 ? 'comment' : 'comments'}</>;
+  const renderPostData = (post: PostType) => <>Posted by <a className={styles.postAuthorLabel} href={'/user/' + post.User?.username}>{post.User?.username}</a> <span>{timeDifference(new Date(), new Date(post.createdAt))}</span></>;
+  const renderPostComments = (post: PostType) => <div className={styles.postCommentsLabel}><i className='far fa-comments comments-icon'></i>{post.PostComments.length} {post.PostComments.length === 1 ? 'comment' : 'comments'}</div>;
 
   return (
     <div className={styles.container}>

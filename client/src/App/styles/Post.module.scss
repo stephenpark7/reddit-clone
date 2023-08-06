@@ -26,9 +26,13 @@
 
   .postDataTimeFull {
       margin-right: 0.45em;
+      letter-spacing: 0.02rem;
   }
 
   .postData {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
       margin-bottom: 0.25em;
   }
 }
@@ -149,4 +153,12 @@
           }
       }
   }
+}
+
+.postAuthorLabel {
+    color: rgb(225, 225, 225);
+}
+
+.postCommentsLabel {
+    color: rgb(225, 225, 225);
 }
