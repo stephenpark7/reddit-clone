@@ -13,7 +13,7 @@ const db = require("./database");
 db.sequelize.sync();
 
 // server port, production mode
-const SERVER_PORT = process.env.SERVER_PORT || 3000;
+const SERVER_PORT = process.env.SERVER_PORT || 4000;
 const PRODUCTION_MODE = process.env.NODE_ENV === "production";
 
 // cors, json parser, bodyparser

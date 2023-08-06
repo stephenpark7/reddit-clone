@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../shared/utils/userContext';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -14,34 +14,31 @@ export default function Home() {
   const [ posts, setPosts ] = useState<PostType[]>([]);
   const [ fetchFlag, setFetchFlag ] = useState(false);
   const [ createPostToggle, setCreatePostToggle ] = useState(false);
+  const [ categoryID, setCategoryID ] = useState(null);
   const navigate = useNavigate();
 
-  const getCategoryData = useCallback(() => {
-    axios({
-      method: 'get',
-      url: '/api/category/' + categoryName,
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json',
-        'x-access-token': userData.access_token
-      }
-    }).then(res => {
-      setPosts(res.data);
-      setFetchFlag(true);
-    }).catch(err => {
-      if (err) {
-        const errorMessage = err.response.data;
-        if (errorMessage) {
-          console.log(errorMessage);
-          navigate('/404');
-        } else {
-          console.log(err);
+  const getCategoryData = useCallback(async () => {
+    try {
+      const res: AxiosResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/category/${categoryName}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': userData.access_token
         }
+      });
+      setCategoryID(res.data.category_id);
+      setPosts(res.data.posts);
+      setFetchFlag(true);
+    } catch (err: any) {
+      console.log(err);
+      const errorMessage = err.response.data;
+      if (errorMessage) {
+        console.log(errorMessage);
+        navigate('/404');
       } else {
         console.log(err);
       }
-    });
-  }, [userData]);
+    }
+  }, [categoryName, navigate, userData.access_token]);
 
   const handleCreatePostToggle = () => {
     setCreatePostToggle(!createPostToggle)
@@ -55,22 +52,20 @@ export default function Home() {
     }
   };
 
-  const createPost = (title: string, description: string) => {
-    axios({
-      method: 'post',
-      url: '/api/category/' + categoryName,
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json',
-        'x-access-token': userData.access_token
-      },
-      params: {
-        category_id: 3,
-        type: 1,
-        title: title,
-        content: description
-      }
-    }).then(res => {
+  const createPost = async (title: string, description: string) => {
+    try {
+      const res: AxiosResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/category/${categoryName}`, {}, {
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': userData.access_token
+        },
+        params: {
+          category_id: categoryID,
+          type: 1,
+          title: title,
+          content: description
+        }
+      });
       let data: PostType = {
         PostComments: [],
         User: {
@@ -86,12 +81,12 @@ export default function Home() {
         user_id: 0,
         category_id: 0,
         updatedAt: ''
-      }
+      };
       // TODO: need to join with PostComments and User
-
       setPosts([ ...posts, data ]);
       setFetchFlag(true);
-    }).catch(err => {
+    } 
+    catch (err: any) {
       if (err) {
         console.log(err)
         const errorMessage = err.response.data;
@@ -104,7 +99,7 @@ export default function Home() {
       } else {
         console.log(err);
       }
-    });
+    }
   };
 
   useEffect(() => {

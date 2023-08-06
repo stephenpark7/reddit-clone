@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -10,13 +10,14 @@ export default function SignUp() {
     e.preventDefault();
     const { username, password, confirmPassword } = getFormElements();
     if (!username.value || !password.value || !confirmPassword.value) return;
-    if (password.value != confirmPassword.value) {
+    if (password.value !== confirmPassword.value) {
       // TODO: create red rectangle on password inputs if passwords do not match
       // TODO: add alert element above form for error and success messages
       return;
     }
     try {
-      const res: AxiosResponse = await axios.post('/api/user/signup', {
+      // TODO: auto login
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/user/signup`, {
         'username': username.value, 
         'password': password.value
       });

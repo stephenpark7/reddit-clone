@@ -1,7 +1,7 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../shared/utils/userContext';
 import axios, { AxiosResponse } from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styles from '../../styles/Post.module.scss';
 // import '../Post/styles.scss';
 import { Post as PostType } from '../../shared/types/Post';
@@ -9,35 +9,39 @@ import { PostComment as PostCommentType } from '../../shared/types/PostComment';
 import { timeDifference } from '../../shared/utils/dateTime';
 import { UserContext as UserContextType } from '../../shared/types/UserContext';
 
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
 export default function Post() {
   const userContext = useContext(UserContext) as UserContextType;
-  const { state: userData, setState: setUserData } = userContext;
+  const { state: userData } = userContext;
   const { categoryName } = useParams<{ categoryName: string }>();
   const [ postData, setPostData ]: any = useState([]);
   const [ fetchFlag, setFetchFlag ] = useState(false);
-  const navigate = useNavigate();
   const { postId } = useParams<{ postId: string }>();
 
+  // const getPostData = 
   useEffect(() => {
-    getPostData();
-  }, []);
-
-  const getPostData = useCallback(() => {
-    axios({
-      method: 'get',
-      url: `${process.env.REACT_APP_API_URL}/category/${categoryName}/${postId}`,
-      headers: {
-        'Content-Type': 'application/json',
-        'x-access-token': userData.access_token
+    const fetchData = async () => {
+      try {
+        const res: AxiosResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/category/${categoryName}/${postId}`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'x-access-token': userData.access_token
+          }
+        });
+        setPostData(res.data);
+        setFetchFlag(true);
       }
-    }).then(res => {
-      setPostData(res.data);
-      setFetchFlag(true);
-    }).catch(err => {
-      console.log(err);
-    });
-    // TODO: add error handling
-  }, [userData]);
+      catch (err: any) {
+        let message = 'Unknown error occurred.'
+        if (err instanceof Error) message = err.message;
+        toast(message);
+      }
+    };
+    fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   async function handleAddComment(e: React.FormEvent): Promise<void> {
     e.preventDefault();
@@ -47,7 +51,7 @@ export default function Post() {
     try {
       const res: AxiosResponse = await axios({
         method: 'post', 
-        url: `${process.env.REACT_APP_API_URL}/category/${categoryName}/${postId}`, 
+        url: `${process.env.REACT_APP_API_URL}/api/category/${categoryName}/${postId}`, 
         headers: {
           'Content-Type': 'application/json',
           'x-access-token': userData.access_token
@@ -75,6 +79,7 @@ export default function Post() {
 
   return (
     <div className={styles.container}>
+      <ToastContainer />
       <h1 className={styles.categoryTitle}>
         <a href={'/category/' + categoryName}>{categoryName}</a>
       </h1>
@@ -118,7 +123,7 @@ export default function Post() {
                 <hr />
                 <div className={styles.postCommentTextEditContainer}>
                   <p className={styles.postCommentText}>{comment.content}</p>
-                  {comment.User.username === userData.username ? <a className={styles.postCommentEditLink} onClick={handleEditComment}>Edit</a> : null}
+                  {/* {comment.User.username === userData.username ? <button className={styles.postCommentEditLink} onClick={handleEditComment}>Edit</button> : null} */}
                 </div>
               </div>
             )}

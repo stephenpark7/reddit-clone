@@ -3,6 +3,8 @@ const { User, Category, Post, PostComment } = db;
 
 // Get all posts
 exports.getAllPosts = async (req, res) => {
+  console.log("GET ALL POSTS");
+
   const { categoryName } = req.params;
   if (!categoryName) return;
   try {
@@ -29,7 +31,10 @@ exports.getAllPosts = async (req, res) => {
       ],
     });
 
-    res.status(200).json(postData);
+    res.status(200).json({ 
+      category_id: categoryData.category_id,
+      posts: postData
+    });
   } catch (err) {
     res.status(400).send('Failed to get tweets.');
   }
@@ -44,6 +49,7 @@ exports.createPost = async (req, res) => {
       res.status(200).send('Missing parameter(s).');
       return;
     }
+    console.log(req.query);
     const post = await Post.create({
       user_id: req.userId,
       category_id: category_id,
@@ -53,6 +59,7 @@ exports.createPost = async (req, res) => {
     });
     res.status(200).json(post);
   } catch (err) {
+    console.log(err);
     res.status(400).send('Failed to create an post.');
   }
 }

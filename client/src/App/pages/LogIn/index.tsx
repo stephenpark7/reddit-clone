@@ -7,7 +7,7 @@ import { UserContext as UserContextType } from '../../shared/types/UserContext';
 
 export default function LogIn() {
   const userContext = useContext(UserContext) as UserContextType;
-  const { state: userData, setState: setUserData } = userContext;
+  const { setState: setUserData } = userContext;
   const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent): Promise<void> {
