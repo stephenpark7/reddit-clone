@@ -5,7 +5,10 @@ export const timeDifference = (current: any, previous: any) => {
   var msPerMonth = msPerDay * 30;
   var msPerYear = msPerDay * 365;
   var elapsed = current - previous;
-  if (elapsed < msPerMinute) {
+  if (elapsed < msPerMinute / 59) {
+    return 'just now';
+  }
+  else if (elapsed < msPerMinute) {
     return Math.round(elapsed / 1000) + ' seconds ago';
   }
   else if (elapsed < msPerHour) {
