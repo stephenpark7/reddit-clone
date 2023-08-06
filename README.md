@@ -1,3 +1,3 @@
-# ConnectVerse
+# ClonedIt
 
 ## Overview
