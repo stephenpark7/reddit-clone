@@ -10,7 +10,6 @@ import { timeDifference } from '../../shared/utils/dateTime';
 import { UserContext as UserContextType } from '../../shared/types/UserContext';
 
 import { toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
 
 export default function Post() {
   const userContext = useContext(UserContext) as UserContextType;

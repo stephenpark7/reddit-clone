@@ -5,8 +5,7 @@ import '../SignUp/styles.css';
 import axios, { AxiosResponse } from 'axios';
 import { UserContext as UserContextType } from '../../shared/types/UserContext';
 
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from '../../shared/utils/toast'
 
 export const LogIn = () => {
   const userContext = useContext(UserContext) as UserContextType;
@@ -28,7 +27,7 @@ export const LogIn = () => {
     } catch (err: any) {
       const errorMessage = err.response.data;
       if (errorMessage) {
-        toast(errorMessage, { autoClose: 2000, position: 'top-center', type: 'error' });
+        toast(errorMessage, { autoClose: 2000, type: 'error' });
         clearForm();
       } else {
         toast(err);

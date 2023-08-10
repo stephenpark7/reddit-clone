@@ -5,8 +5,7 @@ import axios, { AxiosResponse } from 'axios';
 import { UserContext } from '../../shared/utils/userContext';
 import { UserContext as UserContextType } from '../../shared/types/UserContext';
 
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from '../../shared/utils/toast'
 
 export const SignUp = () => {
   const userContext = useContext(UserContext) as UserContextType;
@@ -18,7 +17,8 @@ export const SignUp = () => {
     const { username, password, confirmPassword } = getFormElements();
     if (!username.value || !password.value || !confirmPassword.value) return;
     if (password.value !== confirmPassword.value) {
-      toast('Passwords do not match.', { autoClose: 2000, position: 'top-center', type: 'error' });
+      toast('Passwords do not match.', { autoClose: 2000, type: 'error' });
+      clearForm();
       return;
     }
     try {
@@ -29,11 +29,11 @@ export const SignUp = () => {
       localStorage.setItem('token', JSON.stringify(res.data));
       setUserData(res.data);
       navigate('/');
-      toast('Account created successfully!', { autoClose: 2000, position: 'top-center', type: 'success' });
+      toast('Account created successfully!', { autoClose: 2000, type: 'success' });
     } catch (err: any) {
       const errorMessage = err.response.data;
       if (errorMessage) {
-        toast(errorMessage, { autoClose: 2000, position: 'top-center', type: 'error' });
+        toast(errorMessage, { autoClose: 2000, type: 'error' });
         clearForm();
       } else {
         toast(err);
