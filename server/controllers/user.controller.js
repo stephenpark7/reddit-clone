@@ -37,7 +37,14 @@ exports.create = async (req, res) => {
     username: username,
     password: hashedPassword,
   }).then(user => {
-    res.status(200).send('Successfully created an account.');
+    const token = jwt.sign({ user_id: user.user_id }, jwtSecret, {
+      expiresIn: 86400 // 24 hours
+    });
+    res.status(200).send({
+      user_id: user.user_id,
+      username: user.username,
+      access_token: token,
+    })
   }).catch(err => {
     res.status(400).send('Failed to create an account.');
   });

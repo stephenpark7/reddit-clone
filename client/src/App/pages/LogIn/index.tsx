@@ -5,7 +5,10 @@ import '../SignUp/styles.css';
 import axios, { AxiosResponse } from 'axios';
 import { UserContext as UserContextType } from '../../shared/types/UserContext';
 
-export default function LogIn() {
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+export const LogIn = () => {
   const userContext = useContext(UserContext) as UserContextType;
   const { setState: setUserData } = userContext;
   const navigate = useNavigate();
@@ -25,10 +28,10 @@ export default function LogIn() {
     } catch (err: any) {
       const errorMessage = err.response.data;
       if (errorMessage) {
-        console.log(errorMessage);
+        toast(errorMessage, { autoClose: 2000, position: 'top-center', type: 'error' });
         clearForm();
       } else {
-        console.log(err);
+        toast(err);
       }
     }
   }
@@ -58,4 +61,4 @@ export default function LogIn() {
       <button className='log-in-btn' type='submit'>Log in</button>
     </form>
   );
-}
+};

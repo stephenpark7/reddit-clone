@@ -4,7 +4,7 @@ import { UserContext } from '../../utils/userContext';
 import styles from '../../../styles/Navbar.module.scss';
 import { UserContext as UserContextType } from '../../types/UserContext';
 
-const siteName = 'ClonedIt';
+const siteName = 'ForumPress';
 
 export default function Navbar() {
   const userContext = useContext(UserContext) as UserContextType;
@@ -21,17 +21,17 @@ export default function Navbar() {
   }
 
   return (
-    <nav className={styles.navbar}>
-      <NavLink className={styles.navbarTitle} to='/' >{siteName}</NavLink>
+    <nav className={styles.container}>
+      <NavLink className={styles.title} to='/'>{siteName}</NavLink>
       {userData.username ?
         <>
-          <NavLink className={styles.navbarLink} to={'/u/' + userData.username} >{userData.username}</NavLink>
-          <Link className={styles.navbarLink} to={'/'} onClick={logOut}>Log out</Link>
+          <NavLink className={styles.link} to={`'/u/'${userData.username}`}>{userData.username}</NavLink>
+          <Link className={styles.link} to={'/'} onClick={logOut}>Log out</Link>
         </>
         :
         <>
-          <NavLink className={styles.navbarLink} to='/signup' >sign up</NavLink>
-          <NavLink className={styles.navbarLink} to='/login' >log in</NavLink>
+          <NavLink className={styles.link} to='/signup'>sign up</NavLink>
+          <NavLink className={styles.link} to='/login'>log in</NavLink>
         </>
       }
     </nav>

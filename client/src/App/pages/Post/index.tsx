@@ -9,7 +9,7 @@ import { PostComment as PostCommentType } from '../../shared/types/PostComment';
 import { timeDifference } from '../../shared/utils/dateTime';
 import { UserContext as UserContextType } from '../../shared/types/UserContext';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 
 export default function Post() {
@@ -79,7 +79,6 @@ export default function Post() {
 
   return (
     <div className={styles.container}>
-      <ToastContainer />
       <h1 className={styles.categoryTitle}>
         <a href={'/category/' + categoryName}>{categoryName}</a>
       </h1>

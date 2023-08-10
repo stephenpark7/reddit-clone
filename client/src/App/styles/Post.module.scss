@@ -1,158 +1,162 @@
 .container {
-  padding: 0 10vw;
-  font-size: 1.2em;
+    padding: 0 10vw;
+    font-size: 1.2em;
 }
 
 .categoryTitle {
-  font-size: 2em;
+    font-size: 2em;
 }
 
 .postContainer {
-  padding: 0.4em 0.6em 0.45em 0.6em;
-  margin-bottom: .5em;
-  background: rgb(38, 38, 38);
+    padding: 0.4em 0.6em 0.45em 0.6em;
+    margin-bottom: 0.5em;
+    background: rgb(38, 38, 38);
 
-  .postTitleFull {
-      font-weight: 600;
-      font-size: 1.5em;
-      color: inherit;
-  }
+    .postTitleFull {
+        font-weight: 600;
+        font-size: 1.4em;
+        color: inherit;
+    }
 
-  .postContentFull {
-      color: rgb(206, 206, 206);
-      font-size: 1.1em;
-      padding: 0.25em 0 0.3em 0;
-  }
+    .postContentFull {
+        color: rgb(206, 206, 206);
+        font-size: 1.1em;
+        padding: 0.25em 0 0.3em 0;
+    }
 
-  .postDataTimeFull {
-      margin-right: 0.45em;
-      letter-spacing: 0.02rem;
-  }
+    .postDataTimeFull {
+        margin-right: 0.45em;
+        letter-spacing: 0.02em;
+    }
 
-  .postData {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      margin-bottom: 0.25em;
-  }
+    .postData {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4em;
+        margin-bottom: 0.25em;
+    }
 }
 
 .addCommentFormContainer {
-  position: relative;
-  background-color: rgb(38, 38, 38);
-  padding: 0.4em 0.6em 0.4em 0.6em;
-  margin-bottom: 0.5em;
+    position: relative;
+    background-color: rgb(38, 38, 38);
+    padding: 0.4em 0.6em 0.4em 0.6em;
+    margin-bottom: 0.5em;
 
-  .addCommentContainer {
-      .addCommentTextAreaLabelContainer {
-          margin-bottom: 0.5em;
-          font-size: 0.8em;
+    .addCommentContainer {
+        .addCommentTextAreaLabelContainer {
+            margin-bottom: 0.5em;
+            font-size: 0.8em;
 
-          .addCommentTextAreaLabel {
-              a {
-                  color: rgb(206, 206, 206);
-              }
-              a:hover {
-                  color: rgb(255, 255, 255);
-              }
-          }
-      }
-      .addCommentTextArea {
-          display: block;
-          border: 1px solid rgb(48, 48, 48);
-          background-color: rgb(36, 36, 36);
-          color: rgb(221, 221, 221);
-          width: 100%;
-          margin-bottom: 0.5em;
-          padding: 0.5em;
-          resize: none;
-          font-family: inherit;
-          font-size: 1em;
-          outline: none;
-      }
-      .addCommentTextArea::placeholder {
-        color: rgb(141, 141, 141);
-      }
-  }
+            .addCommentTextAreaLabel {
+                a {
+                    color: rgb(206, 206, 206);
+                }
 
-  .addCommentButtonContainer {
-    display: flex;
-    justify-content: flex-end;
+                a:hover {
+                    color: rgb(255, 255, 255);
+                }
+            }
+        }
 
-      .addCommentButton {
-          display: block;
-          background-color: rgb(49, 49, 49);
-          border: 0;
-          color: rgb(225, 225, 225);
-          font-family: inherit;
-          right: 8px;
-          padding: 0.5em 0.75em;
-          font-size: 0.8em;
-          transition: 0.2s;
-          border-radius: 4px;
+        .addCommentTextArea {
+            display: block;
+            border: 1px solid rgb(48, 48, 48);
+            background-color: rgb(36, 36, 36);
+            color: rgb(221, 221, 221);
+            width: 100%;
+            margin-bottom: 0.5em;
+            padding: 0.5em;
+            resize: none;
+            font-family: inherit;
+            font-size: 1em;
+            outline: none;
+        }
 
-          &:hover {
-              background-color: rgb(60, 60, 60);
-              color: rgb(255, 255, 255);
-              cursor: pointer;
-          }
-      }
-  }
+        .addCommentTextArea::placeholder {
+            color: rgb(141, 141, 141);
+        }
+    }
+
+    .addCommentButtonContainer {
+        display: flex;
+        justify-content: flex-end;
+
+        .addCommentButton {
+            display: block;
+            background-color: rgb(49, 49, 49);
+            border: 0;
+            color: rgb(225, 225, 225);
+            font-family: inherit;
+            right: 8px;
+            padding: 0.5em 0.75em;
+            font-size: 0.8em;
+            transition: 0.2s;
+            border-radius: 4px;
+
+            &:hover {
+                background-color: rgb(60, 60, 60);
+                color: rgb(255, 255, 255);
+                cursor: pointer;
+            }
+        }
+    }
 }
 
 .commentsContainer {
-  .postCommentContainer {
-      background-color: rgb(38, 38, 38);
-      padding: 0.4em 0.6em 0.45em 0.6em;
-      margin-bottom: 0.5em;
-      position: relative;
+    .postCommentContainer {
+        background-color: rgb(38, 38, 38);
+        padding: 0.4em 0.6em 0.45em 0.6em;
+        margin-bottom: 0.5em;
+        position: relative;
 
-      .postCommentAuthor {
-          a {
-              color: rgb(225, 225, 225);
-              font-size: 1.05em;
-              font-weight: 600;
-              margin-right: 0.25em;
-          }
+        .postCommentAuthor {
+            a {
+                color: rgb(225, 225, 225);
+                font-size: 1.05em;
+                font-weight: 600;
+                margin-right: 0.25em;
+            }
 
-          a:hover {
-              color: rgb(255, 255, 255);
-          }
+            a:hover {
+                color: rgb(255, 255, 255);
+            }
 
-          .postCommentTime {
-              font-size: 0.8em;
-          }
-      }
+            .postCommentTime {
+                font-size: 0.8em;
+            }
+        }
 
-      hr {
-          border: 1px solid rgb(54, 54, 54);
-          color: rgba(70, 70, 70, 0.666);
-          margin: 0.2em 0 0.5em 0;
-      }
+        hr {
+            border: 1px solid rgb(54, 54, 54);
+            color: rgba(70, 70, 70, 0.666);
+            margin: 0.2em 0 0.5em 0;
+        }
 
-      .postCommentTextEditContainer {
-        display: flex;
-      }
+        .postCommentTextEditContainer {
+            display: flex;
+        }
 
-      .postCommentText {
-          margin: 0;
-          color: rgb(206, 206, 206);
-          width: 100%;
-      }
+        .postCommentText {
+            margin: 0;
+            color: rgb(206, 206, 206);
+            width: 100%;
+        }
 
-      .postCommentEditLink {
-          align-self: flex-end;
-          text-align: center;
-          color: rgb(225, 225, 225);
-          font-family: inherit;
-          font-size: 0.8em;
-          transition: 0.2s;
-          cursor: pointer;
-          &:hover {
-              color: rgb(255, 255, 255);
-          }
-      }
-  }
+        .postCommentEditLink {
+            align-self: flex-end;
+            text-align: center;
+            color: rgb(225, 225, 225);
+            font-family: inherit;
+            font-size: 0.8em;
+            transition: 0.2s;
+            cursor: pointer;
+
+            &:hover {
+                color: rgb(255, 255, 255);
+            }
+        }
+    }
 }
 
 .postAuthorLabel {

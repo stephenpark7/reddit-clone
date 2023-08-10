@@ -143,7 +143,7 @@ export default function Home() {
       <div className={styles.contentContainer}>
         <div className={styles.postTitle}>{renderPostTitle(post)}</div>
         <div className={styles.postContent}>{renderPostContent(post)}</div>
-        <div className={styles.postData}>{renderPostData(post)}</div>z
+        <div className={styles.postData}>{renderPostData(post)}</div>
         <div className={styles.postComments}>{renderPostComments(post)}</div>
       </div>
     </div>;

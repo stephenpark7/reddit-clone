@@ -1,16 +1,17 @@
 import { useContext } from 'react';
-import { UserContext } from '../../shared/utils/userContext';
+import { isLoggedIn, UserContext } from '../../shared/utils/userContext';
 import styles from '../../styles/Home.module.css';
 
-export default function Home() {
-  const userContext = useContext(UserContext);
-  const { state: userData, setState: setUserData } = userContext;
+export const Home = () => {
+  const { state: userData } = useContext(UserContext);
 
   return (
     <div className={styles.pageContainer}>
-      {/* <h1>Homepage</h1> */}
-      {userData ? 'Welcome ' + userData.username
-      : ''}
+      {isLoggedIn(userData) ? 
+        (userData ? 'Welcome ' + userData.username : '') 
+      : 
+        'Please register or log in.'
+      }
     </div>
   );
-}
+};
