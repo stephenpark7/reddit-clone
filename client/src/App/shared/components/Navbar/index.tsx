@@ -4,7 +4,7 @@ import { UserContext } from '../../utils/userContext';
 import styles from '../../../styles/Navbar.module.scss';
 import { UserContext as UserContextType } from '../../types/UserContext';
 
-const siteName = 'ForumPress';
+const siteName = 'RedactedNode';
 
 export default function Navbar() {
   const userContext = useContext(UserContext) as UserContextType;
