@@ -3,21 +3,18 @@ import { useContext } from 'react';
 import { UserContext } from '../../utils/userContext';
 import styles from '../../../styles/Navbar.module.scss';
 import { UserContext as UserContextType } from '../../types/UserContext';
+import { DefaultUserState } from '../../utils/userContext';
 
 const siteName = 'RedactedNode';
 
-export default function Navbar() {
+export const Navbar = () => {
   const userContext = useContext(UserContext) as UserContextType;
   const { state: userData, setState: setUserData } = userContext;
 
   function logOut() {
     if (!userData) return;
     localStorage.removeItem('token');
-    setUserData({
-      'user_id': '',
-      'username': '',
-      'access_token': '',
-    });
+    setUserData(DefaultUserState);
   }
 
   return (
@@ -29,11 +26,11 @@ export default function Navbar() {
           <Link className={styles.link} to={'/'} onClick={logOut}>Log out</Link>
         </>
         :
-        <>
+        <div className={styles.linksContainer}>
           <NavLink className={styles.link} to='/signup'>sign up</NavLink>
           <NavLink className={styles.link} to='/login'>log in</NavLink>
-        </>
+        </div>
       }
     </nav>
   );
-}
+};

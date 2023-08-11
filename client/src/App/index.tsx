@@ -4,7 +4,7 @@ import { Home, SignUp, LogIn } from './pages';
 import Category from './pages/Category/';
 import Post from './pages/Post';
 import NotFound from './pages/NotFound';
-import Navbar from './shared/components/Navbar';
+import { Navbar } from './shared/components/Navbar';
 import { UserData } from './shared/types/UserData';
 import './styles/App.scss';
 

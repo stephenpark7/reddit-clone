@@ -1,27 +1,32 @@
 .container {
-  padding: 0 10vw;
   display: flex;
-  background-color: rgb(32, 32, 32);
+  height: 65px;
+  padding: 0 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  background-color: var(--body-color);
   box-shadow: 0px 0px 6px 4px rgb(16, 16, 16);
-  height: 55px;
 }
 
 .title {
-  align-self: center;
-  font-size: 2em;
-  margin-right: auto;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: rgb(225, 225, 225);
+  color: var(--font-color);
+}
+
+.linksContainer {
+  display: flex;
+  gap: 1.5rem;
 }
 
 .link {
-  align-self: center;
-  padding: 1.25em 2em 1em 2em;
+  color: var(--font-color);
   height: 100%;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03rem;
   text-transform: uppercase;
   font-weight: 600;
-  font-size: 1em;
+  font-size: 0.8rem;
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -37,13 +42,13 @@
   right: 0px;
   bottom: 0px;
   opacity: 0;
-  border-bottom: 1px solid rgb(128, 128, 128);
+  border-bottom: 1px solid var(--font-color);
 }
 
 .link.active::after {
   background-color: rgb(46, 46, 46);
   opacity: 1;
-  border-bottom: 3px solid rgb(128, 128, 128);
+  border-bottom: 3px solid var(--font-color);
 }
 
 .link:hover::after {
@@ -51,5 +56,5 @@
 }
 
 .link:hover {
-  color: white;
+  color: var(--font-hover-color);
 }

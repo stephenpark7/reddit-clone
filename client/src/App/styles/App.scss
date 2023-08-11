@@ -1,12 +1,23 @@
+:root {
+  --body-color: #FFFFFF;
+  --font-color: #424242;
+  --font-hover-color: #191919;
+}
+
+[data-dark-mode] {
+  --body-color: #191919;
+  --font-color: #E1E1E1;
+  --font-hover-color: #FFFFFF;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  color: rgb(170, 170, 170);
-  background-color: rgb(19, 19, 19);
+  color: var(--TUNDORA);
+  background-color: var(--WHITE);
   font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 12px;
   margin: 0;
 
   a {
