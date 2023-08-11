@@ -10,10 +10,10 @@
 .createPostButtonContainer {
     display: flex;
     justify-content: flex-end;
-    padding: 1em 0em 1em 0;
+    padding: 1rem 0;
 
     .createPostButton {
-        font-size: .8em;
+        font-size: 0.8rem;
         font-weight: 700;
         text-transform: uppercase;
         background-color: inherit;
@@ -31,7 +31,7 @@
 .createPostContainer {
     background-color: var(--body-color);
     margin-bottom: 1em;
-    padding: 1em 1em .4em 1em;
+    padding: 1rem 1rem 0.4rem 1rem;
     border: 1px solid var(--post__border-color);
 
     .createPostTitleInput {
@@ -153,7 +153,7 @@
         }
 
         .postComments a {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--text-color);
         }
 

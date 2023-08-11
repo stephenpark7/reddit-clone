@@ -73,8 +73,8 @@ export default function Post() {
   const renderPostTitle = (post: PostType) => <>{post.title}</>;
   const renderPostContent = (post: PostType) => post.type === 'link' ? <a href={post.content}>{post.content}</a> : <>{post.content}</>;
   const renderPostData = (post: PostType) => <>Posted by <a className={styles.postAuthorLabel} href={'/user/' + post.User?.username}>{post.User?.username}</a> <span>{timeDifference(new Date(), new Date(post.createdAt))}</span></>;
-  const renderPostComments = (post: PostType) => <div className={styles.postCommentsLabel}><i className='far fa-comments comments-icon'></i>{post.PostComments.length} {post.PostComments.length === 1 ? 'comment' : 'comments'}</div>;
-
+  const renderPostComments = (post: PostType) => <div className={styles.postComments}><div className={styles.postCommentsLabel}><i className='far fa-comments comments-icon'></i>{post.PostComments.length} {post.PostComments.length === 1 ? 'comment' : 'comments'}</div></div>;
+  
   return (
     <div className={styles.container}>
       <h1 className={styles.categoryTitle}>
@@ -89,10 +89,10 @@ export default function Post() {
               <button className={styles.voteArrowDown}><i className='fas fa-arrow-down'></i></button>
             </div> */}
             <div className={styles.contentcontainer}>
-              <div className={styles.postTitleFull}>{renderPostTitle(postData)}</div>
-              <div className={styles.postContentFull}>{renderPostContent(postData)}</div>
+              <div className={styles.postTitle}>{renderPostTitle(postData)}</div>
+              <div className={styles.postContent}>{renderPostContent(postData)}</div>
               <div className={styles.postData}>
-                <span className={styles.postDataTimeFull}>{renderPostData(postData)}</span>
+                <span className={styles.postAuthorTimestamp}>{renderPostData(postData)}</span>
                 {renderPostComments(postData)}
               </div>
             </div>

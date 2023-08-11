@@ -4,43 +4,44 @@
 }
 
 .categoryTitle {
-    font-size: 2em;
+    font-size: 1.9rem;
 }
 
 .postContainer {
-    padding: 0.4rem 0.6rem 0.45rem 0.6rem;
-    margin-bottom: 0.5em;
-    background: rgb(38, 38, 38);
+    padding: 0.5rem 0.8rem;
+    margin-bottom: 0.5rem;
+    background: var(--body-color);
+    border: 1px solid var(--post__border-color);
 
-    .postTitleFull {
+    .postTitle {
         font-weight: 600;
-        font-size: 1.4em;
+        font-size: 1.3rem;
         color: inherit;
     }
 
-    .postContentFull {
-        color: rgb(206, 206, 206);
-        font-size: 1.1em;
-        padding: 0.25em 0 0.3em 0;
+    .postContent {
+        color: var(--text-color);
+        margin: 0.25rem 0 0.4rem 0;
     }
 
-    .postDataTimeFull {
-        margin-right: 0.45em;
-        letter-spacing: 0.02em;
+    .postAuthorTimestamp {
+        margin-right: 0.45rem;
+        letter-spacing: 0.02rem;
+        font-size: 0.8rem;
     }
 
     .postData {
         display: flex;
         flex-direction: column;
-        gap: 0.4em;
-        margin-bottom: 0.25em;
+        gap: 0.4rem;
     }
 }
 
 .addCommentFormContainer {
     position: relative;
-    background-color: rgb(38, 38, 38);
-    padding: 0.4em 0.6em 0.4em 0.6em;
+    background-color: var(--body-color);
+    border: 1px solid var(--post__border-color);
+    padding: 0.4rem 0.6rem 0.4rem 0.6rem;
     margin-bottom: 0.5em;
 
     .addCommentContainer {
@@ -50,11 +51,11 @@
 
             .addCommentTextAreaLabel {
                 a {
-                    color: rgb(206, 206, 206);
+                    color: var(--text-color);
                 }
 
                 a:hover {
-                    color: rgb(255, 255, 255);
+                    color: var(--text-hover-color);
                 }
             }
         }
@@ -62,8 +63,9 @@
         .addCommentTextArea {
             display: block;
             border: 1px solid rgb(48, 48, 48);
-            background-color: rgb(36, 36, 36);
-            color: rgb(221, 221, 221);
+            background-color: var(--body-color);
+            border: 1px solid var(--post__border-color);
+            color: var(--text-color);
             width: 100%;
             margin-bottom: 0.5em;
             padding: 0.5em;
@@ -84,9 +86,9 @@
 
         .addCommentButton {
             display: block;
-            background-color: rgb(49, 49, 49);
-            border: 0;
-            color: rgb(225, 225, 225);
+            background-color: var(--body-color);
+            border: 1px solid var(--post__border-color);
+            color: var(--text-color);
             font-family: inherit;
             right: 8px;
             padding: 0.5em 0.75em;
@@ -105,21 +107,22 @@
 
 .commentsContainer {
     .postCommentContainer {
-        background-color: rgb(38, 38, 38);
-        padding: 0.4em 0.6em 0.45em 0.6em;
+        background-color: var(--body-color);
+        border: 1px solid var(--post__border-color);
+        padding: 0.4rem 0.6rem 0.45rem 0.6rem;
         margin-bottom: 0.5em;
         position: relative;
 
         .postCommentAuthor {
             a {
-                color: rgb(225, 225, 225);
+                color: var(--text-color);
                 font-size: 1.05em;
                 font-weight: 600;
                 margin-right: 0.25em;
             }
 
             a:hover {
-                color: rgb(255, 255, 255);
+                color: var(--text-hover-color);
             }
 
             .postCommentTime {
@@ -130,7 +133,7 @@
         hr {
             border: 1px solid rgb(54, 54, 54);
             color: rgba(70, 70, 70, 0.666);
-            margin: 0.2em 0 0.5em 0;
+            margin: 0.2rem 0 0.5rem 0;
         }
 
         .postCommentTextEditContainer {
@@ -139,7 +142,7 @@
 
         .postCommentText {
             margin: 0;
-            color: rgb(206, 206, 206);
+            color: var(--text-color);
             width: 100%;
         }
 
@@ -160,9 +163,10 @@
 }
 
 .postAuthorLabel {
-    color: rgb(225, 225, 225);
+    color: var(--text-color);
 }
 
 .postCommentsLabel {
-    color: rgb(225, 225, 225);
+    color: var(--text-color);
+    font-size: 0.8rem;
 }

@@ -105,7 +105,7 @@ export default function Home() {
 
   useEffect(() => {
     getCategoryData();
-  }, []);
+  }, [ getCategoryData ]);
 
   const renderPostTitle = (post: PostType) => post.type === 'link' ?
     <a href={post.content}>
