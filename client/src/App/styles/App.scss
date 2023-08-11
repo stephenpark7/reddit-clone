@@ -1,16 +1,19 @@
 :root {
   --body-color: #FFFFFF;
-  --font-color: #424242;
-  --font-hover-color: #7c7c7c;
+  --text-color: #424242;
+  --text-hover-color: #7c7c7c;
   --focus-border-color: #C0C0C0;
   --button-body-color: #CFCFCF;
   --margin-top: 2.2rem;
+
+  --post__border-color: #424242;
+  --vote__hover-color: #c4c4c4;
 }
 
 [data-dark-mode] {
   --body-color: #191919;
-  --font-color: #E1E1E1;
-  --font-hover-color: #FFFFFF;
+  --text-color: #E1E1E1;
+  --text-hover-color: #FFFFFF;
 }
 
 * {
@@ -18,16 +21,16 @@
 }
 
 body {
-  color: var(--TUNDORA);
-  background-color: var(--WHITE);
+  color: var(--text-color);
+  background-color: var(--body-color);
   font-family: 'IBM Plex Sans', sans-serif;
   margin: 0;
+}
 
-  a {
-    color: inherit;
-    text-decoration: none;
-    transition: 0.2s;
-  }
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: 0.2s;
 }
 
 .comments-icon {

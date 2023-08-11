@@ -12,7 +12,7 @@
 .title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--font-color);
+  color: var(--text-color);
 }
 
 .linksContainer {
@@ -21,7 +21,7 @@
 }
 
 .link {
-  color: var(--font-color);
+  color: var(--text-color);
   height: 100%;
   letter-spacing: 0.03rem;
   text-transform: uppercase;
@@ -42,13 +42,13 @@
   right: 0px;
   bottom: 0px;
   opacity: 0;
-  border-bottom: 1px solid var(--font-color);
+  border-bottom: 1px solid var(--text-color);
 }
 
 .link.active::after {
   background-color: rgb(46, 46, 46);
   opacity: 1;
-  border-bottom: 3px solid var(--font-color);
+  border-bottom: 3px solid var(--text-color);
 }
 
 .link:hover::after {
@@ -56,5 +56,5 @@
 }
 
 .link:hover {
-  color: var(--font-hover-color);
+  color: var(--text-hover-color);
 }

@@ -41,6 +41,7 @@ export default function Home() {
   }, [categoryName, navigate, userData.access_token]);
 
   const handleCreatePostToggle = () => {
+    // TODO: use transitions
     setCreatePostToggle(!createPostToggle)
   };
 
@@ -154,19 +155,19 @@ export default function Home() {
     <div className={styles.container}>
       <h1 className={styles.categoryTitle}>{categoryName}</h1>
       <div className={styles.createPostButtonContainer}>
-        <a className={styles.createPostButton} 
-           onClick={handleCreatePostToggle}>{!createPostToggle ? 'Create Post' : 'Hide'}</a>
+        <button className={styles.createPostButton} 
+           onClick={handleCreatePostToggle}>{!createPostToggle ? 'Create Post' : 'Hide'}</button>
       </div>
       {createPostToggle && 
       <div className={styles.createPostContainer}>
         <input type='text' 
                name='create-post-title-input' 
                className={styles.createPostTitleInput} 
-               placeholder='enter your title' 
+               placeholder='title' 
                required />
         <textarea name='create-post-content-textarea' 
                   className={styles.createPostDescriptionTextArea} 
-                  placeholder='enter your content' 
+                  placeholder='content' 
                   required />
         <div className={styles.innerCreatePostButtonContainer}>
           <button className={styles.createPostButton}
