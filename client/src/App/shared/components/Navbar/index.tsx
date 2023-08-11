@@ -4,6 +4,7 @@ import { UserContext } from '../../utils/userContext';
 import styles from '../../../styles/Navbar.module.scss';
 import { UserContext as UserContextType } from '../../types/UserContext';
 import { DefaultUserState } from '../../utils/userContext';
+import { isLoggedIn } from '../../utils/userContext';
 
 const siteName = 'RedactedNode';
 
@@ -11,20 +12,21 @@ export const Navbar = () => {
   const userContext = useContext(UserContext) as UserContextType;
   const { state: userData, setState: setUserData } = userContext;
 
-  function logOut() {
+  const logOut = () => {
     if (!userData) return;
     localStorage.removeItem('token');
     setUserData(DefaultUserState);
-  }
+  };
+
 
   return (
     <nav className={styles.container}>
       <NavLink className={styles.title} to='/'>{siteName}</NavLink>
-      {userData.username ?
-        <>
+      {isLoggedIn(userData) ?
+        <div className={styles.linksContainer}>
           <NavLink className={styles.link} to={`'/u/'${userData.username}`}>{userData.username}</NavLink>
           <Link className={styles.link} to={'/'} onClick={logOut}>Log out</Link>
-        </>
+        </div>
         :
         <div className={styles.linksContainer}>
           <NavLink className={styles.link} to='/signup'>sign up</NavLink>
