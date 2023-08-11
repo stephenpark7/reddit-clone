@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../shared/utils/userContext';
-import '../SignUp/styles.css';
+import styles from './index.module.scss';
 import axios, { AxiosResponse } from 'axios';
 import { UserContext as UserContextType } from '../../shared/types/UserContext';
 
@@ -48,16 +48,16 @@ export const LogIn = () => {
   }
 
   return (
-    <form className='log-in-form' onSubmit={handleSubmit}>
-      <div className='input-container'>
+    <form className={styles.logInForm} onSubmit={handleSubmit}>
+      <div className={styles.inputContainer}>
         <label htmlFor='username'>Username</label>
         <input type='text' id='username' name='username' required />
       </div>
-      <div className='input-container'>
+      <div className={styles.inputContainer}>
         <label htmlFor='password'>Password</label>
-        <input type='password' id='password' name='password' required />
+        <input type='password' id='password' name='password' autoComplete='password' required />
       </div>
-      <button className='log-in-btn' type='submit'>Log in</button>
+      <button className={styles.logInBtn} type='submit'>Log in</button>
     </form>
   );
 };

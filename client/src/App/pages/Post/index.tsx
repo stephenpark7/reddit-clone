@@ -1,9 +1,8 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../shared/utils/userContext';
 import axios, { AxiosResponse } from 'axios';
 import { useParams } from 'react-router-dom';
-import styles from '../../styles/Post.module.scss';
-// import '../Post/styles.scss';
+import styles from './index.module.scss';
 import { Post as PostType } from '../../shared/types/Post';
 import { PostComment as PostCommentType } from '../../shared/types/PostComment';
 import { timeDifference } from '../../shared/utils/dateTime';
@@ -68,8 +67,8 @@ export default function Post() {
     }
   }
 
-  async function handleEditComment(e: React.FormEvent): Promise<void> {
-  }
+  // async function handleEditComment(e: React.FormEvent): Promise<void> {
+  // }
 
   const renderPostTitle = (post: PostType) => <>{post.title}</>;
   const renderPostContent = (post: PostType) => post.type === 'link' ? <a href={post.content}>{post.content}</a> : <>{post.content}</>;

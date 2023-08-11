@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../shared/utils/userContext';
 import { useNavigate, useParams } from 'react-router-dom';
-import styles from '../../styles/Category.module.scss';
+import styles from './index.module.scss';
 import { Post as PostType } from '../../shared/types/Post';
 import { timeDifference } from '../../shared/utils/dateTime';
 import { UserContext as UserContextType } from '../../shared/types/UserContext';

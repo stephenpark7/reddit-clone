@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { isLoggedIn, UserContext } from '../../shared/utils/userContext';
-import styles from '../../styles/Home.module.css';
+import styles from './index.module.scss';
 
 export const Home = () => {
   const { state: userData } = useContext(UserContext);

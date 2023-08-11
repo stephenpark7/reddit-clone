@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './styles.css';
+import styles from './index.module.scss';
 import axios, { AxiosResponse } from 'axios';
 import { UserContext } from '../../shared/utils/userContext';
 import { UserContext as UserContextType } from '../../shared/types/UserContext';
@@ -56,20 +56,20 @@ export const SignUp = () => {
   }
 
   return (
-    <form className='sign-up-form' onSubmit={handleSubmit}>
-      <div className='input-container'>
+    <form className={styles.signUpForm} onSubmit={handleSubmit}>
+      <div className={styles.inputContainer}>
         <label htmlFor='username'>Username</label>
         <input type='text' id='username' name='username' autoComplete='username' required />
       </div>
-      <div className='input-container'>
+      <div className={styles.inputContainer}>
         <label htmlFor='password'>Password</label>
         <input type='password' id='password' name='password' autoComplete='password' required />
       </div>
-      <div className='input-container'>
+      <div className={styles.inputContainer}>
         <label htmlFor='confirm-password'>Confirm Password</label>
         <input type='password' id='confirm-password' name='confirm-password' autoComplete='confirm-password' required />
       </div>
-      <button className='sign-up-btn' type='submit'>Sign up</button>
+      <button className={styles.signUpBtn} type='submit'>Sign up</button>
     </form>
   );
 };
