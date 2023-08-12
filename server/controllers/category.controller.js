@@ -3,8 +3,6 @@ const { User, Category, Post, PostComment } = db;
 
 // Get all posts
 exports.getAllPosts = async (req, res) => {
-  console.log("GET ALL POSTS");
-
   const { categoryName } = req.params;
   if (!categoryName) return;
   try {
@@ -36,7 +34,7 @@ exports.getAllPosts = async (req, res) => {
       posts: postData
     });
   } catch (err) {
-    res.status(400).send('Failed to get tweets.');
+    res.status(400).send('Failed to get posts.');
   }
 }
 

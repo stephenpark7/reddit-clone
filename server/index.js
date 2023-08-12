@@ -35,5 +35,5 @@ if (PRODUCTION_MODE) {
 
 // start server
 app.listen(SERVER_PORT, () => {
-  console.log("reddit-clone server started at port " + SERVER_PORT);
+  console.log("server started at port " + SERVER_PORT);
 });
