@@ -1,44 +1,41 @@
-import axios, { AxiosResponse } from 'axios';
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { UserContext } from '../../shared/utils/userContext';
 import { useNavigate, useParams } from 'react-router-dom';
-import styles from './index.module.scss';
 import { Post as PostType } from '../../shared/types/Post';
 import { timeDifference } from '../../shared/utils/dateTime';
 import { UserContext as UserContextType } from '../../shared/types/UserContext';
+import { serialize } from '../../shared/utils/seralize';
+
+import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
+
+import styles from './index.module.scss';
 
 export default function Home() {
   const userContext = useContext(UserContext) as UserContextType;
   const { state: userData } = userContext;
+  
   const { categoryName } = useParams<{ categoryName: string }>();
-  const [ posts, setPosts ] = useState<PostType[]>([]);
-  const [ fetchFlag, setFetchFlag ] = useState(false);
+  const [ categoryData, setCategoryData ] = useState<any>({});
+
   const [ createPostToggle, setCreatePostToggle ] = useState(false);
-  const [ categoryID, setCategoryID ] = useState(null);
+
   const navigate = useNavigate();
 
-  const getCategoryData = useCallback(async () => {
-    try {
-      const res: AxiosResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/category/${categoryName}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          'x-access-token': userData.access_token
-        }
-      });
-      setCategoryID(res.data.category_id);
-      setPosts(res.data.posts);
-      setFetchFlag(true);
-    } catch (err: any) {
-      console.log(err);
-      const errorMessage = err.response.data;
-      if (errorMessage) {
-        console.log(errorMessage);
-        navigate('/404');
-      } else {
-        console.log(err);
-      }
+  const fetchCategoryData = () => {
+    return fetch(`${process.env.REACT_APP_API_URL}/api/category/${categoryName}`).then(res => res.json());
+  };
+
+  const { isLoading, error, data } = useQuery('POSTS', fetchCategoryData);
+
+  useEffect(() => {
+    if (error) {
+      toast(error);
+      navigate('/404');
     }
-  }, [categoryName, navigate, userData.access_token]);
+    setCategoryData(data);
+  }, [ isLoading, error, data, navigate ]);
+
 
   const handleCreatePostToggle = () => {
     // TODO: use transitions
@@ -55,57 +52,54 @@ export default function Home() {
 
   const createPost = async (title: string, description: string) => {
     try {
-      const res: AxiosResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/category/${categoryName}`, {}, {
+      const params = {
+        category_id: data.category_id,
+        type: 1,
+        title: title,
+        content: description
+      };
+      const queryString = serialize(params);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/category/${categoryName}?${queryString}`, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-access-token': userData.access_token
+          'Authorization': `Bearer ${userData.access_token}`,
         },
-        params: {
-          category_id: categoryID,
-          type: 1,
-          title: title,
-          content: description
-        }
       });
-      let data: PostType = {
-        PostComments: [],
+      const rawPostData = await response.json();
+
+      let postData: PostType = {
+        post_id: rawPostData.post_id,
+        type: rawPostData.type,
+        title: rawPostData.title,
+        content: rawPostData.content,
+        upvotes: rawPostData.upvotes,
+        downvotes: rawPostData.downvotes,
+        createdAt: rawPostData.createdAt,
         User: {
           username: userData.username
         },
-        content: res.data.content,
-        createdAt: res.data.createdAt,
-        downvotes: res.data.downvotes,
-        post_id: res.data.post_id,
-        title: res.data.title,
-        type: res.data.type,
-        upvotes: res.data.upvotes,
-        user_id: 0,
-        category_id: 0,
-        updatedAt: ''
+        PostComments: [],
       };
-      // TODO: need to join with PostComments and User
-      setPosts([ ...posts, data ]);
-      setFetchFlag(true);
+
+      const temp = { ...categoryData, posts: [ postData, ...categoryData.posts ] };
+      setCategoryData(temp);
+      console.log(temp);
+
+
+      // setCategoryData({ ...categoryData, posts: [ postData, ...categoryData.posts ] });
     } 
     catch (err: any) {
-      if (err) {
-        console.log(err)
-        const errorMessage = err.response.data;
-        if (errorMessage) {
-          console.log(errorMessage);
-          navigate('/404');
-        } else {
-          console.log(err);
-        }
+      console.log(err)
+      const errorMessage = err.message || err.response.data;
+      if (errorMessage) {
+        console.log(errorMessage);
+        navigate('/404');
       } else {
         console.log(err);
       }
     }
   };
-
-  useEffect(() => {
-    getCategoryData();
-  }, [ getCategoryData ]);
 
   const renderPostTitle = (post: PostType) => post.type === 'link' ?
     <a href={post.content}>
@@ -149,7 +143,7 @@ export default function Home() {
       </div>
     </div>;
 
-  const renderedPosts = posts.length > 0 ? posts.map((post: PostType, idx: number) => renderPost(post, idx)) : <div>There are no posts in this category.</div>;
+  const renderedPosts = categoryData?.posts ? categoryData.posts.map((post: PostType, idx: number) => renderPost(post, idx)) : <div>There are no posts in this category.</div>;
 
   return (
     <div className={styles.container}>
@@ -174,7 +168,7 @@ export default function Home() {
                   onClick={handleCreatePost}>Create Post</button>
         </div>
       </div>}
-      {fetchFlag ? renderedPosts : 'Loading...'}
+      {categoryData ? renderedPosts : 'Loading...'}
     </div>
   );
 }

@@ -13,8 +13,11 @@ import { DefaultUserState, UserContext } from './shared/utils/userContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { QueryClient, QueryClientProvider } from 'react-query';
+
 export const App = () => {
   const [ userData, setUserData ] = useState<UserData>(DefaultUserState);
+  const queryClient = new QueryClient();
 
   useEffect(() => {
     const setToken = () => {
@@ -25,7 +28,7 @@ export const App = () => {
   }, []);
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <ToastContainer />
       <UserContext.Provider value={{ state: userData, setState: setUserData }}>
         <Router>
@@ -40,6 +43,6 @@ export const App = () => {
           </Routes>
         </Router>
       </UserContext.Provider>
-    </>
+    </QueryClientProvider>
   );
 };

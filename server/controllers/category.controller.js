@@ -27,7 +27,7 @@ exports.getAllPosts = async (req, res) => {
         { model: PostComment, attributes: ['comment_id'] }
       ],
       order: [
-        ['post_id', 'ASC']
+        ['createdAt', 'DESC']
       ],
     });
 
@@ -43,13 +43,11 @@ exports.getAllPosts = async (req, res) => {
 // Create a post
 exports.createPost = async (req, res) => {
   try {
-    // const { categoryName } = req.params;
-    const { type, title, content, category_id } = req.query;
-    if (!type || !title || !content || !category_id) {
-      res.status(200).send('Missing parameter(s).');
+    const { category_id, type, title, content } = req.query;
+    if (!category_id || !type || !title || !content) {
+      res.status(400).send('Missing parameter(s).');
       return;
     }
-    console.log(req.query);
     const post = await Post.create({
       user_id: req.userId,
       category_id: category_id,
