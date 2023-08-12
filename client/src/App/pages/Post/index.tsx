@@ -52,7 +52,7 @@ export default function Post() {
         url: `${process.env.REACT_APP_API_URL}/api/category/${categoryName}/${postId}`, 
         headers: {
           'Content-Type': 'application/json',
-          'x-access-token': userData.access_token
+          'Authorization': `Bearer ${userData.access_token}`
         }, 
         data: {
           content: message
