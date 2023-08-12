@@ -155,11 +155,11 @@ export default function Home() {
         <input type='text' 
                name='create-post-title-input' 
                className={styles.createPostTitleInput} 
-               placeholder='title' 
+               placeholder='Title of your post' 
                required />
         <textarea name='create-post-content-textarea' 
                   className={styles.createPostDescriptionTextArea} 
-                  placeholder='content' 
+                  placeholder='What do you want to say?' 
                   required />
         <div className={styles.innerCreatePostButtonContainer}>
           <button className={styles.createPostButton}

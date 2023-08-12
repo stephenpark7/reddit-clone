@@ -1,4 +1,5 @@
 TODO:
+  ✔ Give buttons a padding and border @done(23-08-12 03:44)
   ☐ Use a CSS framework (Bootstrap, Tailwind, ChakraUI, etc.)
   ☐ Dark mode
   ☐ Finish styling post component

@@ -1,13 +1,21 @@
 :root {
   --body-color: #FFFFFF;
+  --dark-body-color: #191919;
+
   --text-color: #424242;
   --text-hover-color: #7c7c7c;
+  --dark-text-color: #E1E1E1;
+  --dark-text-hover-color: #E1E1E1;
+
   --focus-border-color: #C0C0C0;
   --button-body-color: #CFCFCF;
   --margin-top: 2.2rem;
 
   --post__border-color: #424242;
+  --post-input__border-color: #afafaf;
+  --post-button__border-color: #909090;
   --vote__hover-color: #c4c4c4;
+  --create-post__body-color: #f1f1f1;
 }
 
 [data-dark-mode] {
