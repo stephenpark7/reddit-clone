@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../shared/utils/userContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Post as PostType } from '../../shared/types/Post';
