@@ -84,10 +84,8 @@ export default function Home() {
 
       const temp = { ...categoryData, posts: [ postData, ...categoryData.posts ] };
       setCategoryData(temp);
-      console.log(temp);
-
-
-      // setCategoryData({ ...categoryData, posts: [ postData, ...categoryData.posts ] });
+      setCreatePostToggle(false);
+      toast('Post created successfully!', { autoClose: 2000, type: 'success' });
     } 
     catch (err: any) {
       console.log(err)
