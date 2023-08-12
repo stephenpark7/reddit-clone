@@ -1,29 +1,34 @@
 export const timeDifference = (current: any, previous: any) => {
-  var msPerMinute = 60 * 1000;
-  var msPerHour = msPerMinute * 60;
-  var msPerDay = msPerHour * 24;
-  var msPerMonth = msPerDay * 30;
-  var msPerYear = msPerDay * 365;
-  var elapsed = current - previous;
+  const msPerMinute = 60 * 1000;
+  const msPerHour = msPerMinute * 60;
+  const msPerDay = msPerHour * 24;
+  const msPerMonth = msPerDay * 30;
+  const msPerYear = msPerDay * 365;
+  const elapsed = current - previous;
+
   if (elapsed < msPerMinute / 59) {
     return 'just now';
   }
   else if (elapsed < msPerMinute) {
-    return Math.round(elapsed / 1000) + ' seconds ago';
+    return getDifferenceOutput(Math.round(elapsed / 1000), "second");
   }
   else if (elapsed < msPerHour) {
-    return Math.round(elapsed / msPerMinute) + ' minutes ago';
+    return getDifferenceOutput(Math.round(elapsed / msPerMinute), "minute");
   }
   else if (elapsed < msPerDay) {
-    return Math.round(elapsed / msPerHour) + ' hours ago';
+    return getDifferenceOutput(Math.round(elapsed / msPerHour), "hour");
   }
   else if (elapsed < msPerMonth) {
-    return Math.round(elapsed / msPerDay) + ' days ago';
+    return getDifferenceOutput(Math.round(elapsed / msPerDay), "day");
   }
   else if (elapsed < msPerYear) {
-    return Math.round(elapsed / msPerMonth) + ' months ago';
+    return getDifferenceOutput(Math.round(elapsed / msPerMonth), "month");
   }
   else {
-    return Math.round(elapsed / msPerYear) + ' years ago';
+    return getDifferenceOutput(Math.round(elapsed / msPerYear), "year");
   }
 }
+
+const getDifferenceOutput = (diff: number, unit: string) => {
+  return `${diff} ${unit}${diff !== 1 ? 's' : '' } ago`;
+};
