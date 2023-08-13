@@ -10,7 +10,7 @@ import { UserContext as UserContextType } from '../../shared/types/UserContext';
 
 import { toast } from 'react-toastify';
 
-export default function Post() {
+export const Post = () => {
   const userContext = useContext(UserContext) as UserContextType;
   const { state: userData } = userContext;
   const { categoryName } = useParams<{ categoryName: string }>();
@@ -130,4 +130,4 @@ export default function Post() {
       }
     </div>
   );
-}
+};

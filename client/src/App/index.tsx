@@ -1,19 +1,13 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Home, SignUp, LogIn } from './pages';
-import Category from './pages/Category/';
-import Post from './pages/Post';
-import NotFound from './pages/NotFound';
+import { Home, SignUp, LogIn, Category, Post, NotFound } from './pages';
+import { ToastContainer } from 'react-toastify';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { Navbar } from './shared/components/Navbar';
 import { UserData } from './shared/types/UserData';
-import './styles/App.scss';
-
 import { DefaultUserState, UserContext } from './shared/utils/userContext';
-
-import { ToastContainer } from 'react-toastify';
+import './styles/App.scss';
 import 'react-toastify/dist/ReactToastify.css';
-
-import { QueryClient, QueryClientProvider } from 'react-query';
 
 export const App = () => {
   const [ userData, setUserData ] = useState<UserData>(DefaultUserState);

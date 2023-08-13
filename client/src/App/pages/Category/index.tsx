@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 
 import styles from './index.module.scss';
 
-export default function Home() {
+export const Category = () => {
   const userContext = useContext(UserContext) as UserContextType;
   const { state: userData } = userContext;
   
@@ -169,4 +169,4 @@ export default function Home() {
       {categoryData ? renderedPosts : 'Loading...'}
     </div>
   );
-}
+};
