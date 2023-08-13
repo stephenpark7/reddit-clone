@@ -1,10 +1,10 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useContext } from 'react';
+import Cookies from 'js-cookie';
 import { UserContext } from '../../utils/userContext';
-import styles from './index.module.scss';
 import { UserContext as UserContextType } from '../../types/UserContext';
-import { DefaultUserState } from '../../utils/userContext';
-import { isLoggedIn } from '../../utils/userContext';
+import { DefaultUserState, isLoggedIn } from '../../utils/userContext';
+import styles from './index.module.scss';
 
 const siteName = 'RedactedNode';
 
@@ -14,7 +14,7 @@ export const Navbar = () => {
 
   const logOut = () => {
     if (!userData) return;
-    localStorage.removeItem('token');
+    Cookies.set('userData', JSON.stringify(DefaultUserState));
     setUserData(DefaultUserState);
   };
 

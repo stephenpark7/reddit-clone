@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Home, SignUp, LogIn, Category, Post, NotFound } from './pages';
 import { ToastContainer } from 'react-toastify';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { Home, SignUp, LogIn, Category, Post, NotFound } from './pages';
 import { Navbar } from './shared/components/Navbar';
-import { UserData } from './shared/types/UserData';
+import { getCookiesForUserData } from './shared/utils/cookies';
 import { DefaultUserState, UserContext } from './shared/utils/userContext';
+import { UserData } from './shared/types/UserData';
 import './styles/App.scss';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,17 +15,19 @@ export const App = () => {
   const queryClient = new QueryClient();
 
   useEffect(() => {
-    const setToken = () => {
-      const token = localStorage.getItem('token');
-      if (token) setUserData(JSON.parse(token));
+    const getCookiesAndSetUserData = () => {
+      setUserData(JSON.parse(getCookiesForUserData()));
     };
-    setToken();
+    getCookiesAndSetUserData();
   }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
       <ToastContainer />
-      <UserContext.Provider value={{ state: userData, setState: setUserData }}>
+      <UserContext.Provider value={{ 
+        state: userData, 
+        setState: setUserData,
+      }}>
         <Router>
           <Navbar />
           <Routes>

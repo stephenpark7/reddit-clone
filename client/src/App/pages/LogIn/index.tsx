@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../../shared/utils/userContext';
-import styles from './index.module.scss';
 import axios, { AxiosResponse } from 'axios';
+import { UserContext } from '../../shared/utils/userContext';
 import { UserContext as UserContextType } from '../../shared/types/UserContext';
-
+import { setCookiesForUserData } from '../../shared/utils/cookies';
 import { toast } from '../../shared/utils/toast'
+import styles from './index.module.scss';
 
 export const LogIn = () => {
   const userContext = useContext(UserContext) as UserContextType;
@@ -21,9 +21,10 @@ export const LogIn = () => {
         'username': username.value, 
         'password': password.value
       });
-      localStorage.setItem('token', JSON.stringify(res.data));
+      setCookiesForUserData(JSON.stringify(res.data));
       setUserData(res.data);
       navigate('/');
+      toast('Logged in successfully!', { autoClose: 2000, type: 'success' });
     } catch (err: any) {
       const errorMessage = err.response.data;
       if (errorMessage) {
