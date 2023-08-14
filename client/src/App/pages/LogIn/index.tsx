@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios, { AxiosResponse } from 'axios';
 import { UserContext } from '../../shared/utils/userContext';
 import { UserContext as UserContextType } from '../../shared/types/UserContext';
 import { setCookiesForUserData } from '../../shared/utils/cookies';
@@ -17,21 +16,32 @@ export const LogIn = () => {
     const { username, password } = getFormElements();
     if (!username.value || !password.value) return;
     try {
-      const res: AxiosResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/user/login`, {
-        'username': username.value, 
-        'password': password.value
-      });
-      setCookiesForUserData(JSON.stringify(res.data));
-      setUserData(res.data);
+      const response = await fetch
+      (`${process.env.REACT_APP_API_URL}/api/user/login`, 
+        {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({'username': username.value, 'password': password.value}),
+        }
+      );
+      if (!response.ok) {
+        throw new Error(await response.text());
+      }
+      const data = await response.json();
+      setCookiesForUserData(data);
+      setUserData(data);
       navigate('/');
-      toast('Logged in successfully!', { autoClose: 2000, type: 'success' });
-    } catch (err: any) {
-      const errorMessage = err.response.data;
-      if (errorMessage) {
-        toast(errorMessage, { autoClose: 2000, type: 'error' });
+      toast('Logged in successfully!', { type: 'success' });
+    }
+    catch (err: any) {
+      if (err) {
+        toast(err.message, { type: 'error' });
         clearForm();
       } else {
-        toast(err);
+        toast("Unknown error occured.", { type: 'error' });
       }
     }
   }

@@ -85,7 +85,7 @@ export const Category = () => {
       const temp = { ...categoryData, posts: [ postData, ...categoryData.posts ] };
       setCategoryData(temp);
       setCreatePostToggle(false);
-      toast('Post created successfully!', { autoClose: 2000, type: 'success' });
+      toast('Post created successfully!', { type: 'success' });
     } 
     catch (err: any) {
       console.log(err)

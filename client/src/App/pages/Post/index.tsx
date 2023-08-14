@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../shared/utils/userContext';
-import axios, { AxiosResponse } from 'axios';
 import { useParams } from 'react-router-dom';
 import styles from './index.module.scss';
 import { Post as PostType } from '../../shared/types/Post';
@@ -22,13 +21,16 @@ export const Post = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res: AxiosResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/category/${categoryName}/${postId}`, {
+        const response = await fetch
+        (`${process.env.REACT_APP_API_URL}/api/category/${categoryName}/${postId}`, {
+          method: 'GET',
           headers: {
             'Content-Type': 'application/json',
             'x-access-token': userData.access_token
           }
         });
-        setPostData(res.data);
+        const data = await response.json();
+        setPostData(data);
         setFetchFlag(true);
       }
       catch (err: any) {
@@ -47,19 +49,20 @@ export const Post = () => {
     const message: string = textAreaElement.value;
     if (!message || !userData.access_token) return;
     try {
-      const res: AxiosResponse = await axios({
-        method: 'post', 
-        url: `${process.env.REACT_APP_API_URL}/api/category/${categoryName}/${postId}`, 
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${userData.access_token}`
-        }, 
-        data: {
-          content: message
+      const response = await fetch
+      (`${process.env.REACT_APP_API_URL}/api/category/${categoryName}/${postId}`, 
+        {
+          method: 'POST', 
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${userData.access_token}`
+          }, 
+          body: JSON.stringify({ content: message }),
         }
-      });
-      const newComment = res.data;
-      setPostData({...postData, PostComments: [newComment, ...postData.PostComments]});
+      );
+      const data = await response.json();
+      setPostData({ ...postData, PostComments: [ data, ...postData.PostComments ] });
       textAreaElement.value = '';
     } catch (err) {
       // TODO: add error handling

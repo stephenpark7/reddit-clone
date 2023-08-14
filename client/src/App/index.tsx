@@ -16,7 +16,7 @@ export const App = () => {
 
   useEffect(() => {
     const getCookiesAndSetUserData = () => {
-      setUserData(JSON.parse(getCookiesForUserData()));
+      setUserData(getCookiesForUserData());
     };
     getCookiesAndSetUserData();
   }, []);

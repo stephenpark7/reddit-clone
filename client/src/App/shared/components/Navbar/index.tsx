@@ -1,6 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useContext } from 'react';
-import Cookies from 'js-cookie';
+import { setCookiesForUserData } from '../../utils/cookies';
 import { UserContext } from '../../utils/userContext';
 import { UserContext as UserContextType } from '../../types/UserContext';
 import { DefaultUserState, isLoggedIn } from '../../utils/userContext';
@@ -14,10 +14,9 @@ export const Navbar = () => {
 
   const logOut = () => {
     if (!userData) return;
-    Cookies.set('userData', JSON.stringify(DefaultUserState));
+    setCookiesForUserData(DefaultUserState);
     setUserData(DefaultUserState);
   };
-
 
   return (
     <nav className={styles.container}>

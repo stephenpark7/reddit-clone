@@ -72,12 +72,13 @@ exports.login = async (req, res) => {
     const token = jwt.sign({ user_id: userData.user_id }, jwtSecret, {
       expiresIn: 86400 // 24 hours
     });
+    console.log(token);
     res.status(200).send({
       user_id: userData.user_id,
       username: username,
       access_token: token,
     });
   } else {
-    res.status(400).send('Incorrect password.');
+    res.status(400).send('Invalid password.');
   }
 }

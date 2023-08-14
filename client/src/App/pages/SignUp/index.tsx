@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios, { AxiosResponse } from 'axios';
 import { UserContext } from '../../shared/utils/userContext';
 import { UserContext as UserContextType } from '../../shared/types/UserContext';
 import { setCookiesForUserData } from '../../shared/utils/cookies';
 import { toast } from '../../shared/utils/toast'
 import styles from './index.module.scss';
+import { signUp } from '../../shared/utils/api';
 
 export const SignUp = () => {
   const userContext = useContext(UserContext) as UserContextType;
@@ -17,26 +17,23 @@ export const SignUp = () => {
     const { username, password, confirmPassword } = getFormElements();
     if (!username.value || !password.value || !confirmPassword.value) return;
     if (password.value !== confirmPassword.value) {
-      toast('Passwords do not match.', { autoClose: 2000, type: 'error' });
+      toast('Passwords do not match.', { type: 'error' });
       clearForm();
       return;
     }
     try {
-      const res: AxiosResponse = await axios.post(`${process.env.REACT_APP_API_URL}/api/user/signup`, {
-        'username': username.value, 
-        'password': password.value
-      });
-      setCookiesForUserData(JSON.stringify(res.data));
-      setUserData(res.data);
+      const data = await signUp(username.value, password.value);
+      setCookiesForUserData(data);
+      setUserData(data);
       navigate('/');
-      toast('Account created successfully!', { autoClose: 2000, type: 'success' });
-    } catch (err: any) {
-      const errorMessage = err.response.data;
-      if (errorMessage) {
-        toast(errorMessage, { autoClose: 2000, type: 'error' });
+      toast('Account created successfully!', { type: 'success' });
+    }
+    catch (err: any) {
+      if (err) {
+        toast(err.message, { type: 'error' });
         clearForm();
       } else {
-        toast(err);
+        toast("Unknown error occured.", { type: 'error' });
       }
     }
   }
