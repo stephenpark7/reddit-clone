@@ -28,12 +28,15 @@ RedactedNode is designed to provide users with a seamless and interactive enviro
 - `cd client && npm start`
 - `cd server && npm start`
 
-## Dependencies
-
+## Tech stack
 - React
 - Typescript
 - Express
 - NodeJS
 - Postgres
+
+## Dependencies
 - Sequelize
 - JWT
+- js-cookie
+- react-toastify
