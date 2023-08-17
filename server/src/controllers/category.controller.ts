@@ -1,8 +1,9 @@
-const db = require('../database');
+import { db } from "../db";
+
 const { User, Category, Post, PostComment } = db;
 
 // Get all posts
-exports.getAllPosts = async (req, res) => {
+const getAllPosts = async (req: any, res: any) => {
   const { categoryName } = req.params;
   if (!categoryName) return;
   try {
@@ -39,7 +40,7 @@ exports.getAllPosts = async (req, res) => {
 }
 
 // Create a post
-exports.createPost = async (req, res) => {
+const createPost = async (req: any, res: any) => {
   try {
     const { category_id, type, title, content } = req.query;
     if (!category_id || !type || !title || !content) {
@@ -61,7 +62,7 @@ exports.createPost = async (req, res) => {
 }
 
 // Create a post comment
-exports.createPostComment = async (req, res) => {
+const createPostComment = async (req: any, res: any) => {
   try {
     const { postId } = req.params;
     const { content } = req.body;
@@ -84,7 +85,7 @@ exports.createPostComment = async (req, res) => {
 }
 
 // Get post data (content, title, upvotes, downvotes, comments, etc.)
-exports.getPostDataById = async (req, res) => {
+const getPostDataById = async (req: { params: { postId: any; }; }, res: { status: (arg0: number) => { (): any; new(): any; send: { (arg0: string): void; new(): any; }; json: { (arg0: any): void; new(): any; }; }; }) => {
   try {
     const { postId } = req.params;
     if (!postId) {
@@ -114,3 +115,5 @@ exports.getPostDataById = async (req, res) => {
     res.status(400).send('Failed to get a post.');
   }
 }
+
+export { getAllPosts, createPost, createPostComment, getPostDataById };

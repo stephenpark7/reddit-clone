@@ -1,4 +1,4 @@
-module.exports = (sequelize, Sequelize) => {
+export const PostComment = (sequelize: any, Sequelize: any) => {
   const PostComment = sequelize.define('PostComment', {
     comment_id: {
       type: Sequelize.INTEGER,
@@ -24,4 +24,4 @@ module.exports = (sequelize, Sequelize) => {
   });
   
   return PostComment;
-}
+};

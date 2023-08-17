@@ -1,4 +1,4 @@
-module.exports = (sequelize, Sequelize) => {
+export const Post = (sequelize: any, Sequelize: any) => {
   const Post = sequelize.define('Post', {
     post_id: {
       type: Sequelize.UUID,
@@ -42,4 +42,4 @@ module.exports = (sequelize, Sequelize) => {
   });
   
   return Post;
-}
+};

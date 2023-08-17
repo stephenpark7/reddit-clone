@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PostComment = exports.Post = exports.Category = exports.User = void 0;
+const user_model_1 = require("./user.model");
+Object.defineProperty(exports, "User", { enumerable: true, get: function () { return user_model_1.User; } });
+const category_model_1 = require("./category.model");
+Object.defineProperty(exports, "Category", { enumerable: true, get: function () { return category_model_1.Category; } });
+const post_model_1 = require("./post.model");
+Object.defineProperty(exports, "Post", { enumerable: true, get: function () { return post_model_1.Post; } });
+const post_comment_model_1 = require("./post-comment.model");
+Object.defineProperty(exports, "PostComment", { enumerable: true, get: function () { return post_comment_model_1.PostComment; } });

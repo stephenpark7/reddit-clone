@@ -1,13 +1,14 @@
-const db = require('../database');
+import { db } from "../db";
 const User = db.User;
-const bcrypt = require('bcryptjs');
-const validator = require('validator');
+import bcrypt from 'bcryptjs';
 
-const jwt = require('jsonwebtoken');
-const jwtSecret = process.env.JWT_SECRET;
+import validator from 'validator';
+import jwt from 'jsonwebtoken';
+
+const jwtSecret: any = process.env.JWT_SECRET;
 
 // Create a new account
-exports.create = async (req, res) => {
+const create = async (req: any, res: any) => {
   const { username, password } = req.body;
 
   // Check for missing fields
@@ -36,7 +37,7 @@ exports.create = async (req, res) => {
   User.create({
     username: username,
     password: hashedPassword,
-  }).then(user => {
+  }).then((user: any) => {
     const token = jwt.sign({ user_id: user.user_id }, jwtSecret, {
       expiresIn: 86400 // 24 hours
     });
@@ -45,13 +46,13 @@ exports.create = async (req, res) => {
       username: user.username,
       access_token: token,
     })
-  }).catch(err => {
+  }).catch((err: any) => {
     res.status(400).send('Failed to create an account.');
   });
 }
 
 // Log in to account
-exports.login = async (req, res) => {
+const login = async (req: any, res: any) => {
   const { username, password } = req.body;
 
   // Check for missing fields
@@ -82,3 +83,5 @@ exports.login = async (req, res) => {
     res.status(400).send('Invalid password.');
   }
 }
+
+export { create, login };
