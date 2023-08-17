@@ -1,4 +1,5 @@
-require('dotenv').config({ path: `.env.${process.env.NODE_ENV || 'development'}` });
+import dotenv from 'dotenv';
+dotenv.config({ path: `.env.${process.env.NODE_ENV || 'development'}` });
 
 // express, path, cors, dotenv
 import express from 'express';
