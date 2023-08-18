@@ -59,13 +59,15 @@ export const Category = () => {
         content: description
       };
       const queryString = serialize(params);
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/category/${categoryName}?${queryString}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${userData.access_token}`,
-        },
-      });
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/category/${categoryName}?${queryString}`, 
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${userData.access_token}`,
+          },
+        }
+      );
       const rawPostData = await response.json();
 
       let postData: PostType = {
@@ -102,18 +104,22 @@ export const Category = () => {
   const renderPostTitle = (post: PostType) => post.type === 'link' ?
     <a href={post.content}>
       {post.title}
-    </a> :
+    </a> 
+  :
     <a href={'/category/' + categoryName + '/' + post.post_id}>
       {post.title}
     </a>
+  ;
 
   const renderPostContent = (post: PostType) => post.type === 'link' ?
     <a href={post.content}>
       {post.content}
-    </a> :
+    </a> 
+  :
     <>
       {post.content}
-    </>;
+    </>
+  ;
 
   const renderPostData = (post: PostType) => <>
     Posted by <a href={'/user/' + post.User?.username}>{post.User?.username}</a> {timeDifference(new Date(), new Date(post.createdAt))}

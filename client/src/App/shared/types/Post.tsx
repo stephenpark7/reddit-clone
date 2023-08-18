@@ -9,10 +9,6 @@ export type Post = {
   upvotes: number;
   downvotes: number;
   createdAt: string;
-
   User?: User;
-  // user_id?: number;
-  // category_id?: number;
-  // updatedAt?: string;
   PostComments: Array<PostComment>;
 }

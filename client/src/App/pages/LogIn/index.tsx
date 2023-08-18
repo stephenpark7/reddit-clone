@@ -11,20 +11,22 @@ export const LogIn = () => {
   const { setState: setUserData } = userContext;
   const navigate = useNavigate();
 
-  async function handleSubmit(e: React.FormEvent): Promise<void> {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const { username, password } = getFormElements();
     if (!username.value || !password.value) return;
     try {
-      const response = await fetch
-      (`${process.env.REACT_APP_API_URL}/api/user/login`, 
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user/login`, 
         {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({'username': username.value, 'password': password.value}),
+          body: JSON.stringify({
+            'username': username.value, 
+            'password': password.value 
+          }),
         }
       );
       if (!response.ok) {
@@ -44,19 +46,19 @@ export const LogIn = () => {
         toast("Unknown error occured.", { type: 'error' });
       }
     }
-  }
+  };
 
-  function clearForm(): void {
+  const clearForm = () => {
     const { username, password } = getFormElements();
     username.value = '';
     password.value = '';
-  }
+  };
 
-  function getFormElements(): { username: HTMLInputElement, password: HTMLInputElement } {
+  const getFormElements = () : { username: HTMLInputElement, password: HTMLInputElement } => {
     const username: HTMLInputElement = (document.querySelector('#username') as HTMLInputElement);
     const password: HTMLInputElement = (document.querySelector('#password') as HTMLInputElement);
     return { username, password };
-  }
+  };
 
   return (
     <form className={styles.logInForm} onSubmit={handleSubmit}>
