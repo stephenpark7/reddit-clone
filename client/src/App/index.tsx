@@ -4,11 +4,11 @@ import { ToastContainer } from 'react-toastify';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Home, SignUp, LogIn, Category, Post, NotFound } from './pages';
 import { Navbar } from './shared/components/Navbar';
+import { UserData } from './shared/types/UserData';
 import { getCookiesForUserData } from './shared/utils/cookies';
 import { DefaultUserState, UserContext } from './shared/utils/userContext';
-import { UserData } from './shared/types/UserData';
-import './styles/App.scss';
 import 'react-toastify/dist/ReactToastify.css';
+import './styles/App.scss';
 
 export const App = () => {
   const [ userData, setUserData ] = useState<UserData>(DefaultUserState);
