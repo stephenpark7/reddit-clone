@@ -147,7 +147,7 @@ export const Category = () => {
       </div>
     </div>;
 
-  const renderedPosts = categoryData?.posts ? categoryData.posts.map((post: PostType, idx: number) => renderPost(post, idx)) : <div>There are no posts in this category.</div>;
+  const renderedPosts = categoryData?.posts?.length > 0 ? categoryData.posts.map((post: PostType, idx: number) => renderPost(post, idx)) : <div>There are no posts in this category.</div>;
 
   return (
     <div className={styles.container}>

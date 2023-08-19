@@ -3,6 +3,7 @@ TODO:
   ☐ Jest for testing
   ☐ Dark mode
   ☐ Add caching
+  ☐ Debouncing
   
 Archive:
   ✔ Give buttons a padding and border @done(23-08-12 03:44) @project(TODO)
