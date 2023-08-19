@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ToastContainer } from 'react-toastify';
 import { Home, SignUp, LogIn, Category, Post, NotFound } from './pages';
 import { Navbar } from './shared/components/Navbar';
 import { UserData } from './shared/types/UserData';

@@ -9,9 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getPostDataById = exports.createPostComment = exports.createPost = exports.getAllPosts = void 0;
+exports.getPostDataById = exports.createPostComment = exports.createPost = exports.getAllPosts = exports.getCategories = void 0;
 const db_1 = require("../db");
 const { User, Category, Post, PostComment } = db_1.db;
+// Get all categories
+const getCategories = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const categories = yield Category.findAll();
+        res.status(200).json(categories);
+    }
+    catch (err) {
+        res.status(400).send('Failed to get categories.');
+    }
+});
+exports.getCategories = getCategories;
 // Get all posts
 const getAllPosts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { categoryName } = req.params;

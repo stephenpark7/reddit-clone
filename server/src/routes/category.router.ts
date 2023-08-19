@@ -1,10 +1,14 @@
 import express from 'express';
-import { getAllPosts, createPost, createPostComment, getPostDataById } from '../controllers/category.controller';
+import { getAllPosts, createPost, createPostComment, getPostDataById, getCategories } from '../controllers/category.controller';
 import { auth } from '../middleware/auth.middleware';
 
 export const CategoryRoute = express.Router();
 
 // api/category
+
+CategoryRoute.get('/', async (req: any, res: any) => {
+  await getCategories(req, res);
+});
 
 CategoryRoute.get('/:categoryName', async (req: any, res: any) => {
   await getAllPosts(req, res);

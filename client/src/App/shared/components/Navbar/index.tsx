@@ -23,7 +23,7 @@ export const Navbar = () => {
   const renderNavItems = () => 
     isLoggedIn(userData) ? 
       <div className={styles.linksContainer}>
-        <NavLink className={styles.link} to={`/users/${userData.username}`}>{userData.username}</NavLink>
+        <NavLink className={styles.link} to={`/settings`}>Settings</NavLink>
         <Link className={styles.link} to={'/'} onClick={logOut}>Log out</Link>
       </div>
     :

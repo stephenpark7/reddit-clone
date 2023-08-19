@@ -2,8 +2,18 @@ import { db } from "../db";
 
 const { User, Category, Post, PostComment } = db;
 
+// Get all categories
+export const getCategories = async (req: any, res: any) => {
+  try {
+    const categories = await Category.findAll();
+    res.status(200).json(categories);
+  } catch (err: any) {
+    res.status(400).send('Failed to get categories.');
+  }
+};
+
 // Get all posts
-const getAllPosts = async (req: any, res: any) => {
+export const getAllPosts = async (req: any, res: any) => {
   const { categoryName } = req.params;
   if (!categoryName) return;
   try {
@@ -40,7 +50,7 @@ const getAllPosts = async (req: any, res: any) => {
 }
 
 // Create a post
-const createPost = async (req: any, res: any) => {
+export const createPost = async (req: any, res: any) => {
   try {
     const { category_id, type, title, content } = req.query;
     if (!category_id || !type || !title || !content) {
@@ -62,7 +72,7 @@ const createPost = async (req: any, res: any) => {
 }
 
 // Create a post comment
-const createPostComment = async (req: any, res: any) => {
+export const createPostComment = async (req: any, res: any) => {
   try {
     const { postId } = req.params;
     const { content } = req.body;
@@ -85,7 +95,7 @@ const createPostComment = async (req: any, res: any) => {
 }
 
 // Get post data (content, title, upvotes, downvotes, comments, etc.)
-const getPostDataById = async (req: { params: { postId: any; }; }, res: { status: (arg0: number) => { (): any; new(): any; send: { (arg0: string): void; new(): any; }; json: { (arg0: any): void; new(): any; }; }; }) => {
+export const getPostDataById = async (req: any, res: any) => {
   try {
     const { postId } = req.params;
     if (!postId) {
@@ -115,5 +125,3 @@ const getPostDataById = async (req: { params: { postId: any; }; }, res: { status
     res.status(400).send('Failed to get a post.');
   }
 }
-
-export { getAllPosts, createPost, createPostComment, getPostDataById };

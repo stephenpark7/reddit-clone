@@ -1,0 +1,24 @@
+.container {
+  margin-top: 2rem;
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+}
+
+.categoryItem {
+  color: var(--text-color);
+  transition: 0.2s;
+
+  &:hover {
+    color: var(--text-hover-color);
+  }
+}

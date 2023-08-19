@@ -18,6 +18,9 @@ const category_controller_1 = require("../controllers/category.controller");
 const auth_middleware_1 = require("../middleware/auth.middleware");
 exports.CategoryRoute = express_1.default.Router();
 // api/category
+exports.CategoryRoute.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    yield (0, category_controller_1.getCategories)(req, res);
+}));
 exports.CategoryRoute.get('/:categoryName', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, category_controller_1.getAllPosts)(req, res);
 }));
