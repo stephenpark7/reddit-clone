@@ -15,12 +15,13 @@ export const CategoryList = () => {
 
   return (
     <div className={styles.container}>
-      <h3>Categories</h3>
       <div className={styles.categoryList}>
         {categories.map((category: any, idx: number) => (
-          <div key={idx}>
-            <a className={styles.categoryItem} href={`/category/${category.name}`}>{category.name}</a>
-          </div>
+          <a href={`/category/${category.name}`} key={idx}>
+            <div className={styles.categoryItem} key={idx}>
+              {category.name}
+            </div>
+          </a>
         ))}
       </div>
     </div>

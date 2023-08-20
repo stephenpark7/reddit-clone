@@ -5,9 +5,8 @@ import styles from './index.module.scss';
 import { Post as PostType } from '../../shared/types/Post';
 import { PostComment as PostCommentType } from '../../shared/types/PostComment';
 import { timeDifference } from '../../shared/utils/dateTime';
+import { toast } from '../../shared/utils/toast';
 import { UserContext as UserContextType } from '../../shared/types/UserContext';
-
-import { toast } from 'react-toastify';
 
 export const Post = () => {
   const userContext = useContext(UserContext) as UserContextType;

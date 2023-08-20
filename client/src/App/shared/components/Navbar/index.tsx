@@ -4,7 +4,7 @@ import { setCookiesForUserData } from '../../utils/cookies';
 import { UserContext } from '../../utils/userContext';
 import { UserContext as UserContextType } from '../../types/UserContext';
 import { DefaultUserState, isLoggedIn } from '../../utils/userContext';
-import { toast } from '../../utils/toast';
+import { toast } from '../../../shared/utils/toast';
 import styles from './index.module.scss';
 
 const siteName = 'RedactedNode';

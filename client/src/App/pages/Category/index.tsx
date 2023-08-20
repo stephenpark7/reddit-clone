@@ -3,11 +3,11 @@ import { UserContext } from '../../shared/utils/userContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Post as PostType } from '../../shared/types/Post';
 import { timeDifference } from '../../shared/utils/dateTime';
+import { toast } from '../../shared/utils/toast';
 import { UserContext as UserContextType } from '../../shared/types/UserContext';
 import { serialize } from '../../shared/utils/seralize';
 
 import { useQuery } from 'react-query';
-import { toast } from 'react-toastify';
 
 import styles from './index.module.scss';
 
@@ -147,7 +147,7 @@ export const Category = () => {
       </div>
     </div>;
 
-  const renderedPosts = categoryData?.posts?.length > 0 ? categoryData.posts.map((post: PostType, idx: number) => renderPost(post, idx)) : <div>There are no posts in this category.</div>;
+  const renderedPosts = categoryData?.posts?.length > 0 ? categoryData.posts.map((post: PostType, idx: number) => renderPost(post, idx)) : <div>There are no posts yet.</div>;
 
   return (
     <div className={styles.container}>

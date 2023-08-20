@@ -4,21 +4,22 @@
 
 .categoryList {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.5rem;
 }
 
-h3 {
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin-bottom: 0.6rem;
-}
-
 .categoryItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 38px;
   color: var(--text-color);
-  transition: 0.2s;
-
+  border: 1px solid var(--category-item__border-color);
+  border-radius: 8px;
+  transition: 0.2s ease-in-out;
   &:hover {
-    color: var(--text-hover-color);
+    background-color: var(--dark-body-color);
+    color: var(--dark-text-hover-color);
   }
 }
