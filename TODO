@@ -1,6 +1,8 @@
 TODO:
-  ☐ Change "Category" to "Section" @started(23-08-20 02:25)
-  ☐ Transitions for category/post add
+  ☐ Change "Category" to "Section"
+  ☐ Use express-sessions, passport, connect-redis
+  ☐ Settings page
+  ☐ User profile page
   ☐ Jest for testing
   ☐ Dark mode
   ☐ Add caching
@@ -14,3 +16,4 @@ Core Features:
 Archive:
   ✔ Give buttons a padding and border @done(23-08-12 03:44) @project(TODO)
   ✔ Typescript for express @done(23-08-17 03:42)
+  ✔ Transitions for category/post add @done(23-08-21 01:06)
