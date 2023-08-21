@@ -156,8 +156,7 @@ export const Category = () => {
         <button className={styles.createPostButton} 
            onClick={handleCreatePostToggle}>{!createPostToggle ? 'Create Post' : 'Hide'}</button>
       </div>
-      {createPostToggle && 
-      <div className={styles.createPostContainer}>
+      {<div className={`${styles.createPostContainer}${createPostToggle ? ` ${styles.toggled}` : ''}`}>
         <input type='text' 
                name='create-post-title-input' 
                className={styles.createPostTitleInput} 

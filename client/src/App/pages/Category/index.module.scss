@@ -1,6 +1,7 @@
 .container {
     padding: 0 1.5rem;
     font-size: 1rem;
+    overflow: hidden;
 }
 
 .categoryTitle {
@@ -36,6 +37,11 @@
     border-radius: 8px;
     box-shadow: 0px 3px 7px 1px rgba(121, 121, 121, 0.5);
 
+    opacity: 0;
+    max-height: 0;
+    visibility: hidden;
+    transition: 0.5s ease-in-out;
+
     .createPostTitleInput {
         display: block;
         background-color: var(--body-color);
@@ -47,6 +53,9 @@
         font-family: inherit;
         font-size: 1rem;
         outline: none;
+
+        transition: 0.2s ease-in;
+        transition-delay: 250ms;
     }
 
     .createPostDescriptionTextArea {
@@ -62,6 +71,9 @@
         font-family: inherit;
         font-size: 0.95rem;
         outline: none;
+
+        transition: 0.2s ease-in;
+        transition-delay: 250ms;
     }
 
     .innerCreatePostButtonContainer {
@@ -79,12 +91,15 @@
             text-transform: uppercase;
             background-color: inherit;
             color: inherit;
-            transition: 0.2s;
+
+            transition: 0.2s ease-in;
+            transition-delay: 250ms;
 
             &:hover {
                 background-color: var(--dark-body-color);
                 color: var(--dark-text-hover-color);
                 cursor: pointer;
+                transition: 0.2s;
             }
         }
     }
@@ -182,4 +197,10 @@
             font-size: 1.05rem;
         }
     }
+}
+
+.toggled {
+    opacity: 1;
+    visibility: visible;
+    max-height: 500px; //276px;
 }
