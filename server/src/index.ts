@@ -29,9 +29,9 @@ app.use('/api/', router);
 
 // serve production build
 if (PRODUCTION_MODE) {
-  app.use(express.static(path.join(__dirname, '../client/build')));
+  app.use(express.static(path.join(__dirname, '../../../client/build')));
   app.get('/', (req: any, res: any) => {
-    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, '../../../client/build', 'index.html'));
   });
 }
 

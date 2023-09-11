@@ -1,0 +1,20 @@
+{
+  "name": "redacted-node",
+  "version": "1.0.0",
+  "description": "Welcome to RedactedNode – a dynamic and engaging discussion platform that blends the power of Node.js and React to create a unique community experience.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephenpark7/redacted-node.git"
+  },
+  "author": "Stephen Park",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stephenpark7/redacted-node/issues"
+  },
+  "homepage": "https://github.com/stephenpark7/redacted-node#readme",
+  "scripts": {
+    "build": "cd client && npm run build && cd ../server && npm run build",
+    "start": "cd server && NODE_ENV=production node src/dist/index.js"
+  }
+}
