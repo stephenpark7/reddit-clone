@@ -14,7 +14,7 @@
   },
   "homepage": "https://github.com/stephenpark7/redacted-node#readme",
   "scripts": {
-    "build": "cd server && npm install && npm run build",
+    "build": "cd client; npm install; npm run build; cd ../server; npm install; npm run build",
     "start": "cd server && npm install && node src/dist/index.js"
   }
 }
