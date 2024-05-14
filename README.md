@@ -1,4 +1,4 @@
-# RedactedNode
+# TechVerse
 
 ## Instructions
 1. Run `yarn install`

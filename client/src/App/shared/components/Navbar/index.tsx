@@ -7,7 +7,7 @@ import { DefaultUserState, isLoggedIn } from '../../utils/userContext';
 import { toast } from '../../../shared/utils/toast';
 import styles from './index.module.scss';
 
-const siteName = 'RedactedNode';
+const siteName = 'TechVerse';
 
 export const Navbar = () => {
   const userContext = useContext(UserContext) as UserContextType;

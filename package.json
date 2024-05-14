@@ -1,18 +1,18 @@
 {
-  "name": "redacted-node",
+  "name": "tech-verse",
   "version": "1.0.0",
-  "description": "Welcome to RedactedNode – a dynamic and engaging discussion platform that blends the power of Node.js and React to create a unique community experience.",
+  "description": "Welcome to TechVerse – a dynamic and engaging discussion platform that blends the power of Node.js and React to create a unique community experience.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stephenpark7/redacted-node.git"
+    "url": "git+https://github.com/stephenpark7/tech-verse.git"
   },
   "author": "Stephen Park",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/stephenpark7/redacted-node/issues"
+    "url": "https://github.com/stephenpark7/tech-verse/issues"
   },
-  "homepage": "https://github.com/stephenpark7/redacted-node#readme",
+  "homepage": "https://github.com/stephenpark7/tech-verse#readme",
   "scripts": {
     "build": "cd client; npm install; npm run build; cd ../server; npm install; npm run build",
     "start": "cd server && npm install && node src/dist/index.js"
