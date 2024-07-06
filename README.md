@@ -8,5 +8,5 @@ Postgres, Express.js, Node.js, React, TypeScript
 
 ## Instructions
 
-React build for production: `npm run build` \
-Run both server and client: `npm start`
+Build client and server: `npm run build` \
+Run server and client: `npm start`
